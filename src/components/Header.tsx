@@ -83,7 +83,7 @@ const MenuItems = styled.div<{ open: boolean }>`
   }
 `;
 const Line = styled.div`
-  height: 2px;
+  height: 1px;
   opacity: 0.104;
   background: #fff;
   width: 100%;

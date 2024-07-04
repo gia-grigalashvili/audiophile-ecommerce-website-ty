@@ -1,73 +1,90 @@
-// import data from "../data.json";
-
 import styled from "styled-components";
 
 function SeeProduct() {
   return (
-    <Maindiv>
-      <h2>NEW PRODUCT</h2>
-      <h1>
-        XX99 Mark II <br />
-        HeadphoneS
-      </h1>
-      <p>
-        Experience natural, lifelike audio and exceptional build quality made
-        for the passionate music enthusiast.
-      </p>
+    <MainDiv>
+      <div
+        className="div
+      "
+      >
+        <h2>NEW PRODUCT</h2>
+        <h1>
+          XX99 Mark II <br />
+          Headphones
+        </h1>
+        <p>
+          Experience natural, lifelike audio and exceptional build quality made
+          for the passionate music enthusiast.
+        </p>
+      </div>
+
       <Button>See Product</Button>
-    </Maindiv>
+    </MainDiv>
   );
 }
-const Maindiv = styled.div`
-  background-image: "/public/assets/home/mobile/image-header.jpg";
+
+const MainDiv = styled.div`
+  background-image: url("/public/assets/home/mobile/image-header.jpg");
   background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  padding: 30px;
+  height: 601px;
+  text-align: center;
+
   h2 {
-    color: #fff;
-    text-align: center;
+    color: #707070;
     font-size: 14px;
-    font-style: normal;
     font-weight: 400;
-    line-height: normal;
     letter-spacing: 10px;
     text-transform: uppercase;
+    margin-bottom: 10px;
   }
+
   h1 {
     color: #fff;
-    text-align: center;
     font-size: 36px;
-    font-style: normal;
     font-weight: 700;
-    line-height: 40px; /* 111.111% */
+    line-height: 40px;
     letter-spacing: 1.286px;
     text-transform: uppercase;
+    margin-bottom: 20px;
   }
+
   p {
     color: #fff;
-    text-align: center;
     font-size: 15px;
-    font-style: normal;
     font-weight: 400;
-    line-height: 25px; /* 166.667% */
+    line-height: 25px;
+    margin-bottom: 30px;
+  }
+  .div {
+    margin-top: 80px;
   }
 `;
-const Button = styled.div`
+
+const Button = styled.button`
   width: 160px;
   height: 48px;
-  flex-shrink: 0;
   background: #d87d4a;
   color: #fff;
-  font-family: Manrope;
+  font-family: Manrope, sans-serif;
   font-size: 13px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
   letter-spacing: 1px;
   text-transform: uppercase;
+  border: none;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &:hover {
+    background: #f0895d;
+  }
 `;
+
 export default SeeProduct;
