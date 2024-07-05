@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import SeeProduct from "./components/SeeProduct";
 import Tech from "./components/Tech";
 import Speaker from "./components/Speaker";
+import HeadPhones from "./components/HeadPhones";
 function App() {
   return (
     <>
@@ -10,6 +11,7 @@ function App() {
       <SeeProduct></SeeProduct>
       <Tech></Tech>
       <Speaker></Speaker>
+      <HeadPhones></HeadPhones>
     </>
   );
 }
