@@ -3,7 +3,7 @@ import check from "/public/assets/Combined Shape 2.svg";
 import Burger from "/public/assets/Group.svg";
 import Logo from "/public/assets/audiophile 2.svg";
 import { useState } from "react";
-
+import Tech from "./Tech";
 function Header() {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
@@ -17,10 +17,11 @@ function Header() {
         <img className="burger" src={Burger} onClick={toggleMenu} alt="" />
         <img src={Logo} alt="" />
         <MenuItems open={menuOpen}>
-          <p>Home</p>
+          {/* <p>Home</p>
           <p>HEADPHONES</p>
           <p>SPEAKERS</p>
-          <p>EARPHONES</p>
+          <p>EARPHONES</p> */}
+          <Tech></Tech>
         </MenuItems>
         <img src={check} alt="" />
       </Navigation>
@@ -56,8 +57,8 @@ const MenuItems = styled.div<{ open: boolean }>`
     top: 10.3%;
     left: 0;
     height: 100vh;
-    width: 50%;
-    background: #191919;
+    width: 100%;
+    background: #fff;
     padding: 20px;
     transition: transform 0.3s ease-in-out;
     transform: ${(props) =>
