@@ -5,6 +5,7 @@ import Tech from "./components/Tech";
 import Speaker from "./components/Speaker";
 import HeadPhones from "./components/HeadPhones";
 import Personal from "./components/Personal";
+import Footer from "./components/Footer";
 function App() {
   return (
     <>
@@ -14,6 +15,7 @@ function App() {
       <Speaker></Speaker>
       <HeadPhones></HeadPhones>
       <Personal></Personal>
+      <Footer></Footer>
     </>
   );
 }
