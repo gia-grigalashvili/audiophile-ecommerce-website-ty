@@ -4,6 +4,7 @@ import SeeProduct from "./components/SeeProduct";
 import Tech from "./components/Tech";
 import Speaker from "./components/Speaker";
 import HeadPhones from "./components/HeadPhones";
+import Personal from "./components/Personal";
 function App() {
   return (
     <>
@@ -12,6 +13,7 @@ function App() {
       <Tech></Tech>
       <Speaker></Speaker>
       <HeadPhones></HeadPhones>
+      <Personal></Personal>
     </>
   );
 }
