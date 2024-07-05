@@ -14,10 +14,12 @@ function HeadPhones() {
 const Maindiv = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 20px;
   gap: 40px;
   img {
     width: 327px;
-    height: 180px;
+    height: 210px;
+    border-radius: 8px;
   }
 `;
 const Secondidv = styled.div`
@@ -26,6 +28,8 @@ const Secondidv = styled.div`
   gap: 30px;
   padding: 20px;
   width: 327px;
+  border-radius: 8px;
+  background: #f1f1f1;
   height: 200px;
   button {
     width: 160px;
@@ -38,6 +42,7 @@ const Secondidv = styled.div`
     letter-spacing: 1px;
     text-transform: uppercase;
     font-weight: 700;
+    cursor: pointer;
   }
 `;
 export default HeadPhones;
