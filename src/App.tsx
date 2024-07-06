@@ -6,17 +6,40 @@ import Speaker from "./components/Speaker";
 import HeadPhones from "./components/HeadPhones";
 import Personal from "./components/Personal";
 import Footer from "./components/Footer";
-function App() {
+import Click from "./components/Click";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+function HomePage() {
   return (
     <>
-      <Header></Header>
-      <SeeProduct></SeeProduct>
-      <Tech></Tech>
-      <Speaker></Speaker>
-      <HeadPhones></HeadPhones>
-      <Personal></Personal>
-      <Footer></Footer>
+      <SeeProduct />
+      <Tech />
+      <Speaker />
+      <HeadPhones />
+      <Personal />
+      <Footer />
     </>
+  );
+}
+function HomePages() {
+  return (
+    <>
+      <Click />
+      <Tech />
+      <Personal />
+      <Footer />
+    </>
+  );
+}
+function App() {
+  return (
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/headphones" element={<HomePages />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

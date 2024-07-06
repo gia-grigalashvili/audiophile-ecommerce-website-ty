@@ -1,8 +1,11 @@
+import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HEADPHONES from "/public/assets/shared/desktop/image-category-thumbnail-headphones.png";
 import EARPHONES from "/public/assets/shared/desktop/image-category-thumbnail-earphones.png";
 import SPEAKERS from "/public/assets/shared/desktop/image-category-thumbnail-speakers.png";
 import ARROW from "/public/assets/Path 2.png";
+
 function Tech() {
   const technic = [
     { name: "HEADPHONES", image: HEADPHONES },
@@ -15,11 +18,11 @@ function Tech() {
       {technic.map((item, index) => (
         <Stylediv key={index}>
           <img src={item.image} alt={item.name} />
+
           <STDIV>
-            {" "}
             <h1>{item.name}</h1>
             <ARROWs>
-              <p>shop</p>
+              <Link to="/headphones">Shop</Link>
               <img className="arrow" src={ARROW} alt="" />
             </ARROWs>
           </STDIV>
@@ -43,25 +46,13 @@ const Maindiv = styled.div`
   }
   h1 {
     color: #000;
-
     font-size: 15px;
-
     font-weight: 700;
-
     letter-spacing: 1.071px;
     text-transform: uppercase;
   }
-  p {
-    color: #000;
-
-    font-size: 13px;
-
-    font-weight: 700;
-
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
 `;
+
 const Stylediv = styled.div`
   display: flex;
   flex-direction: column;
@@ -73,6 +64,7 @@ const Stylediv = styled.div`
   height: 155px;
   align-items: center;
 `;
+
 const ARROWs = styled.div`
   display: flex;
   align-items: center;
@@ -84,12 +76,13 @@ const ARROWs = styled.div`
     margin-top: 0px;
   }
 `;
+
 const STDIV = styled.div`
   margin-top: -20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-
   align-items: center;
 `;
+
 export default Tech;

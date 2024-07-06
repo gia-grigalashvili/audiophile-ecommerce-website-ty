@@ -4,6 +4,8 @@ import Burger from "/public/assets/Group.svg";
 import Logo from "/public/assets/audiophile 2.svg";
 import { useState } from "react";
 import Tech from "./Tech";
+import { Link } from "react-router-dom";
+
 function Header() {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
@@ -14,18 +16,20 @@ function Header() {
   return (
     <div>
       <Navigation>
-        <img className="burger" src={Burger} onClick={toggleMenu} alt="" />
-        <img src={Logo} alt="" />
+        <img className="burger" src={Burger} onClick={toggleMenu} alt="Menu" />
+        <Link to="/">
+          <img className="logo" src={Logo} alt="Audiophile Logo" />
+        </Link>
         <MenuItems open={menuOpen}>
           {/* <p>Home</p>
           <p>HEADPHONES</p>
           <p>SPEAKERS</p>
           <p>EARPHONES</p> */}
-          <Tech></Tech>
+          <Tech />
         </MenuItems>
-        <img src={check} alt="" />
+        <img src={check} alt="Check" />
       </Navigation>
-      <Line></Line>
+      <Line />
     </div>
   );
 }
@@ -36,6 +40,7 @@ const Navigation = styled.div`
   background: #191919;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   img {
     cursor: pointer;
   }
@@ -83,10 +88,12 @@ const MenuItems = styled.div<{ open: boolean }>`
     }
   }
 `;
+
 const Line = styled.div`
   height: 1px;
   opacity: 0.104;
   background: #fff;
   width: 100%;
 `;
+
 export default Header;

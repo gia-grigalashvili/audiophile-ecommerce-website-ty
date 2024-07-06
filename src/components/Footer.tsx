@@ -33,12 +33,14 @@ const Footerdiv = styled.div`
   height: 100%;
   background: #101010;
   display: flex;
+  gap: 30px;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 20px;
+  padding: 50px;
+  margin-top: 100px;
   p {
-    color: #fff;
+    color: #9b9b9b;
     text-align: center;
     font-family: Manrope;
     font-size: 15px;
@@ -49,17 +51,12 @@ const Footerdiv = styled.div`
 `;
 const Social = styled.div`
   display: flex;
-  gap: 10px;
-  img {
-    width: 104px;
-    height: 24px;
-    flex-shrink: 0;
-  }
+  gap: 20px;
 `;
 const Infor = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
   h1 {
     color: #fff;
     font-family: Manrope;

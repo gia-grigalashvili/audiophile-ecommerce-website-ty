@@ -53,6 +53,7 @@ const Speakerdiv = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
+  background-position: center;
   img {
     width: 172.248px;
     height: 207px;
