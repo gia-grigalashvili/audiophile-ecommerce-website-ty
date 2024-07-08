@@ -7,6 +7,7 @@ import HeadPhones from "./components/HeadPhones";
 import Personal from "./components/Personal";
 import Footer from "./components/Footer";
 import Click from "./components/Click";
+import Speakercomp from "./components/Speakercomp";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function HomePage() {
@@ -31,6 +32,16 @@ function HomePages() {
     </>
   );
 }
+function HomePagess() {
+  return (
+    <>
+      <Speakercomp />
+      <Tech />
+      <Personal />
+      <Footer />
+    </>
+  );
+}
 function App() {
   return (
     <BrowserRouter>
@@ -38,6 +49,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/headphones" element={<HomePages />} />
+        <Route path="/speakers" element={<HomePagess />} />
       </Routes>
     </BrowserRouter>
   );

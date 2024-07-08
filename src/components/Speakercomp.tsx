@@ -1,22 +1,17 @@
 import Data from "../data.json";
 import styled from "styled-components";
-// import Tech from "./Tech";
-// import Personal from "./Personal";
-// import Footer from "./Footer";
 
-function Click() {
-  // Filter the products by category "headphones" and then reverse the order
-  const headphones = Data.filter(
-    (item) => item.category === "headphones"
-  ).reverse();
+function Speakercomp() {
+  // Filter the products by category "speakers"
+  const speakers = Data.filter((item) => item.category === "speakers");
 
   return (
     <div>
       <Header>
-        <h1>HEADPHONES</h1>
+        <h1>SPEAKERS</h1>
       </Header>
       <Maindiv>
-        {headphones.map((product) => (
+        {speakers.map((product) => (
           <div key={product.id}>
             <img src={product.image.mobile} alt={product.name} />
             {product.new && <span>NEW PRODUCT</span>}
@@ -69,8 +64,8 @@ const Button = styled.button`
   line-height: normal;
   letter-spacing: 1px;
   text-transform: uppercase;
-  cursor: pointer;
   margin-top: 20px;
+  cursor: pointer;
 `;
 const Header = styled.div`
   width: 100%;
@@ -88,4 +83,4 @@ const Header = styled.div`
     text-transform: uppercase;
   }
 `;
-export default Click;
+export default Speakercomp;

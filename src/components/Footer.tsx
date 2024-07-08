@@ -66,6 +66,10 @@ const Infor = styled.div`
     line-height: 25px; /* 192.308% */
     letter-spacing: 2px;
     text-transform: uppercase;
+    cursor: pointer;
+    &:hover {
+      color: #d87d4a;
+    }
   }
 `;
 export default Footer;
