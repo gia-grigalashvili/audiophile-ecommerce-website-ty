@@ -9,7 +9,7 @@ function Tech() {
   const technic = [
     { name: "HEADPHONES", image: HEADPHONES, link: "/headphones" },
     { name: "SPEAKERS", image: SPEAKERS, link: "/speakers" },
-    { name: "EARPHONES", image: EARPHONES, link: "#" },
+    { name: "EARPHONES", image: EARPHONES, link: "/earphones" },
   ];
 
   return (
@@ -17,14 +17,13 @@ function Tech() {
       {technic.map((item, index) => (
         <Stylediv key={index}>
           <img src={item.image} alt={item.name} />
-
           <STDIV>
             <h1>{item.name}</h1>
             <ARROWs>
               <Link to={item.link}>
                 <p>shop</p>
               </Link>
-              <img className="arrow" src={ARROW} alt="" />
+              <img className="arrow" src={ARROW} alt="arrow icon" />
             </ARROWs>
           </STDIV>
         </Stylediv>
@@ -37,7 +36,6 @@ const Maindiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   text-align: center;
   gap: 68px;
   margin-top: 111px;

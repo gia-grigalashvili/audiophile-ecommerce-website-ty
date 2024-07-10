@@ -1,28 +1,34 @@
+import { useParams, useNavigate } from "react-router-dom";
 import Data from "../data.json";
 import styled from "styled-components";
-// import Tech from "./Tech";
-// import Personal from "./Personal";
-// import Footer from "./Footer";
 
-function Click() {
-  // Filter the products by category "headphones" and then reverse the order
-  const headphones = Data.filter(
-    (item) => item.category === "headphones"
-  ).reverse();
+function Category() {
+  const { category } = useParams();
+  const navigate = useNavigate();
+
+  const products = category
+    ? Data.filter((item) => item.category === category).reverse()
+    : [];
+
+  const handleViewProduct = (id) => {
+    navigate(`/product/${id}`);
+  };
 
   return (
     <div>
       <Header>
-        <h1>HEADPHONES</h1>
+        <h1>{category ? category.toUpperCase() : "CATEGORY"}</h1>
       </Header>
       <Maindiv>
-        {headphones.map((product) => (
+        {products.map((product) => (
           <div key={product.id}>
             <img src={product.image.mobile} alt={product.name} />
             {product.new && <span>NEW PRODUCT</span>}
             <h1>{product.name}</h1>
             <p>{product.description}</p>
-            <Button>See Product</Button>
+            <Button onClick={() => handleViewProduct(product.id)}>
+              See Product
+            </Button>
           </div>
         ))}
       </Maindiv>
@@ -88,4 +94,5 @@ const Header = styled.div`
     text-transform: uppercase;
   }
 `;
-export default Click;
+
+export default Category;

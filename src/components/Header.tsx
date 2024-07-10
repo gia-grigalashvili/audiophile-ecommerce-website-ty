@@ -6,7 +6,7 @@ import { useState } from "react";
 import Tech from "./Tech";
 import { Link } from "react-router-dom";
 
-function Header() {
+function Header({ totalItems }) {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
   const toggleMenu = () => {
@@ -21,13 +21,28 @@ function Header() {
           <img className="logo" src={Logo} alt="Audiophile Logo" />
         </Link>
         <MenuItems open={menuOpen}>
-          {/* <p>Home</p>
-          <p>HEADPHONES</p>
-          <p>SPEAKERS</p>
-          <p>EARPHONES</p> */}
-          <Tech />
+          <ResponsiveMenu>
+            <p>
+              <Link to="/">Home</Link>
+            </p>
+            <p>
+              <Link to="/headphones">HEADPHONES</Link>
+            </p>
+            <p>
+              <Link to="/speakers">SPEAKERS</Link>
+            </p>
+            <p>
+              <Link to="/earphones">EARPHONES</Link>
+            </p>
+          </ResponsiveMenu>
+          <TechWrapper>
+            <Tech />
+          </TechWrapper>
         </MenuItems>
-        <img src={check} alt="Check" />
+        <Cart>
+          <img src={check} alt="Check" />
+          {totalItems > 0 && <ItemCount>{totalItems}</ItemCount>}
+        </Cart>
       </Navigation>
       <Line />
     </div>
@@ -55,7 +70,7 @@ const Navigation = styled.div`
 const MenuItems = styled.div<{ open: boolean }>`
   display: flex;
   gap: 20px;
-  @media (max-width: 768px) {
+  @media (max-width: 800px) {
     display: ${(props) => (props.open ? "flex" : "none")};
     flex-direction: column;
     position: absolute;
@@ -69,24 +84,61 @@ const MenuItems = styled.div<{ open: boolean }>`
     transform: ${(props) =>
       props.open ? "translateX(0)" : "translateX(-100%)"};
   }
-  @media (min-width: 768px) {
-    display: flex;
-    flex-direction: row;
+`;
+
+const ResponsiveMenu = styled.div`
+  display: flex;
+
+  gap: 20px;
+  display: none;
+  @media (min-width: 800px) {
+    display: block;
   }
+
   p {
-    color: #fff;
+    color: #9b9b9b;
+    text-align: center;
     font-family: Manrope;
-    font-size: 13px;
+    font-size: 15px;
     font-style: normal;
-    font-weight: 700;
-    line-height: 25px; /* 192.308% */
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    font-weight: 400;
+    line-height: 25px; /* 166.667% */
+
     cursor: pointer;
     &:hover {
       color: #d87d4a;
     }
   }
+`;
+
+const TechWrapper = styled.div`
+  display: block;
+
+  @media (min-width: 800px) {
+    display: none;
+  }
+`;
+
+const Cart = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  img {
+    cursor: pointer;
+  }
+`;
+
+const ItemCount = styled.div`
+  background: #d87d4a;
+  border-radius: 50%;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 8px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
 `;
 
 const Line = styled.div`
