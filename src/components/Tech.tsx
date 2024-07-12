@@ -61,6 +61,15 @@ const Maindiv = styled.div`
     letter-spacing: 1px;
     text-transform: uppercase;
   }
+  @media (min-width: 1440px) {
+    flex-direction: row;
+    justify-content: center;
+    img {
+      width: 150.947px;
+      height: 160px;
+      margin-top: -60px;
+    }
+  }
 `;
 
 const Stylediv = styled.div`

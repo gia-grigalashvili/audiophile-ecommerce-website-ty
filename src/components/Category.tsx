@@ -10,7 +10,7 @@ function Category() {
     ? Data.filter((item) => item.category === category).reverse()
     : [];
 
-  const handleViewProduct = (id) => {
+  const handleViewProduct = (id: number) => {
     navigate(`/product/${id}`);
   };
 

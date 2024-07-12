@@ -1,14 +1,19 @@
+import React, { useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import check from "/public/assets/Combined Shape 2.svg";
 import Burger from "/public/assets/Group.svg";
 import Logo from "/public/assets/audiophile 2.svg";
-import { useState } from "react";
 import Tech from "./Tech";
-import { Link } from "react-router-dom";
 
-function Header({ totalItems }) {
+interface HeaderProps {
+  totalItems: number;
+  click: boolean;
+  onClick: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ totalItems, click, onClick }) => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
-
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -21,33 +26,48 @@ function Header({ totalItems }) {
           <img className="logo" src={Logo} alt="Audiophile Logo" />
         </Link>
         <MenuItems open={menuOpen}>
-          <ResponsiveMenu>
-            <p>
-              <Link to="/">Home</Link>
-            </p>
-            <p>
-              <Link to="/headphones">HEADPHONES</Link>
-            </p>
-            <p>
-              <Link to="/speakers">SPEAKERS</Link>
-            </p>
-            <p>
-              <Link to="/earphones">EARPHONES</Link>
-            </p>
-          </ResponsiveMenu>
+          <p>
+            <Link to="/">Home</Link>
+          </p>
+          <p>
+            <Link to="/headphones">HEADPHONES</Link>
+          </p>
+          <p>
+            <Link to="/speakers">SPEAKERS</Link>
+          </p>
+          <p>
+            <Link to="/earphones">EARPHONES</Link>
+          </p>
           <TechWrapper>
             <Tech />
           </TechWrapper>
         </MenuItems>
         <Cart>
-          <img src={check} alt="Check" />
+          <img onClick={onClick} src={check} alt="Check" />
           {totalItems > 0 && <ItemCount>{totalItems}</ItemCount>}
+          {click && (
+            <CounterDiv>
+              <div className="info">
+                <h1>cart ({totalItems})</h1>
+                <p>Remove all</p>
+              </div>
+              {/* Add cart items and total calculation here */}
+              <div className="TOTAL">
+                <p>TOTAL</p>
+                <h1>55555</h1>
+              </div>
+              <Link to="/checkout">
+                {" "}
+                <button>checkout</button>
+              </Link>
+            </CounterDiv>
+          )}
         </Cart>
       </Navigation>
       <Line />
     </div>
   );
-}
+};
 
 const Navigation = styled.div`
   width: 100%;
@@ -61,7 +81,7 @@ const Navigation = styled.div`
   }
   .burger {
     display: block;
-    @media (min-width: 1440px) {
+    @media (min-width: 750px) {
       display: none;
     }
   }
@@ -84,36 +104,21 @@ const MenuItems = styled.div<{ open: boolean }>`
     transform: ${(props) =>
       props.open ? "translateX(0)" : "translateX(-100%)"};
   }
-`;
-
-const ResponsiveMenu = styled.div`
-  display: flex;
-
-  gap: 20px;
-  display: none;
-  @media (min-width: 800px) {
-    display: block;
-  }
-
-  p {
-    color: #9b9b9b;
-    text-align: center;
+  a {
+    color: #fff;
     font-family: Manrope;
-    font-size: 15px;
+    font-size: 13px;
     font-style: normal;
-    font-weight: 400;
-    line-height: 25px; /* 166.667% */
-
-    cursor: pointer;
-    &:hover {
-      color: #d87d4a;
-    }
+    font-weight: 700;
+    line-height: 25px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
   }
 `;
 
 const TechWrapper = styled.div`
   display: block;
-
   @media (min-width: 800px) {
     display: none;
   }
@@ -123,7 +128,6 @@ const Cart = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-
   img {
     cursor: pointer;
   }
@@ -146,6 +150,70 @@ const Line = styled.div`
   opacity: 0.104;
   background: #fff;
   width: 100%;
+`;
+
+const CounterDiv = styled.div`
+  width: 327px;
+  height: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-shrink: 0;
+  background: #fff;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  border-radius: 10px;
+
+  box-shadow: 0px 10px 10px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h1 {
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: 1.286px;
+      text-transform: uppercase;
+    }
+    p {
+      color: #000;
+      font-family: Manrope;
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 25px; /* 166.667% */
+      text-decoration-line: underline;
+      cursor: pointer;
+    }
+  }
+  .TOTAL {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  button {
+    height: 48px;
+    background: #d87d4a;
+    border: none;
+    color: #fff;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    &:hover {
+      background-color: #7e3f1b;
+    }
+  }
 `;
 
 export default Header;

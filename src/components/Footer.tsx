@@ -3,15 +3,26 @@ import styled from "styled-components";
 import Facebok from "/public/assets/shared/desktop/icon-facebook.svg";
 import instagram from "/public/assets/shared/desktop/icon-instagram.svg";
 import twitter from "/public/assets/shared/desktop/icon-twitter.svg";
+import { Link } from "react-router-dom";
 function Footer() {
   return (
     <Footerdiv>
-      <img src={Logo} alt="" />
+      <Link to="/">
+        <img className="logo" src={Logo} alt="Audiophile Logo" />
+      </Link>
       <Infor>
-        <h1>Home</h1>
-        <h1>HEADPHONES</h1>
-        <h1>SPEAKERS</h1>
-        <h1>EARPHONES</h1>
+        <h1>
+          <Link to="/">Home</Link>
+        </h1>
+        <h1>
+          <Link to="/headphones">HEADPHONES</Link>
+        </h1>
+        <h1>
+          <Link to="/speakers">SPEAKERS</Link>
+        </h1>
+        <h1>
+          <Link to="/earphones">EARPHONES</Link>
+        </h1>
       </Infor>
       <p>
         Audiophile is an all in one stop to fulfill your audio needs. We're a

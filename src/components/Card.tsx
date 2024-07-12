@@ -1,22 +1,33 @@
+import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import data from "../data.json";
 import styled from "styled-components";
 import Minus from "/public/assets/-.png";
 import Plus from "/public/assets/+.png";
 
-const Card = ({ productCounters, handleIncrement, handleDecrement }) => {
+interface CardProps {
+  productCounters: { [key: number]: number };
+  handleIncrement: (productId: number) => void;
+  handleDecrement: (productId: number) => void;
+  handleAddToCart: (productId: number) => void;
+}
+
+const Card: React.FC<CardProps> = ({
+  productCounters,
+  handleIncrement,
+  handleDecrement,
+}) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const product = data.find((item) => item.id === parseInt(id, 10));
 
-  const handleViewProduct = (productId) => {
+  const handleViewProduct = (productId: number) => {
     navigate(`/product/${productId}`);
   };
 
   return (
     <div>
       <p onClick={() => navigate(-1)}>GO BACK</p>
-
       <ContainerDiv>
         {product ? (
           <div>
@@ -29,20 +40,19 @@ const Card = ({ productCounters, handleIncrement, handleDecrement }) => {
                 <img
                   className="Minus"
                   src={Minus}
-                  alt=""
+                  alt="Decrement"
                   onClick={() => handleDecrement(product.id)}
                 />
                 <h5>{productCounters[product.id] || 0}</h5>
                 <img
                   className="Plus"
                   src={Plus}
-                  alt=""
+                  alt="Increment"
                   onClick={() => handleIncrement(product.id)}
                 />
               </COUNTERS>
               <Button>ADD TO CART</Button>
             </COUNTERSDIV>
-
             <h1>Features</h1>
             <p>{product.features}</p>
             <h1 className="IntheBox">In the Box</h1>
@@ -58,7 +68,6 @@ const Card = ({ productCounters, handleIncrement, handleDecrement }) => {
               <img src={product.gallery.second.mobile} alt="Gallery Image 2" />
               <img src={product.gallery.third.mobile} alt="Gallery Image 3" />
             </Gallery>
-
             <h1>You may also like</h1>
             <OtherProducts>
               {product.others.map((other, index) => (

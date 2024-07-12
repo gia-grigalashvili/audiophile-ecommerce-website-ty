@@ -1,12 +1,16 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 function SeeProduct() {
+  const navigate = useNavigate();
+
+  const handleSeeProduct = () => {
+    navigate(`/product/4`);
+  };
+
   return (
     <MainDiv>
-      <div
-        className="div
-      "
-      >
+      <div className="div">
         <h2>NEW PRODUCT</h2>
         <h1>
           XX99 Mark II <br />
@@ -18,7 +22,7 @@ function SeeProduct() {
         </p>
       </div>
 
-      <Button>See Product</Button>
+      <Button onClick={handleSeeProduct}>See Product</Button>
     </MainDiv>
   );
 }
@@ -32,9 +36,16 @@ const MainDiv = styled.div`
   justify-content: center;
   align-items: center;
   padding: 30px;
-  height: 601px;
+  height: 729px;
   text-align: center;
-
+  @media (min-width: 1440px) {
+    background-image: url("/public/assets/home/desktop/image-hero.jpg");
+    height: 100vh;
+    background-size: cover;
+    text-align: unset;
+    align-items: unset;
+    padding: 100px;
+  }
   h2 {
     color: #707070;
     font-size: 14px;
@@ -52,6 +63,13 @@ const MainDiv = styled.div`
     letter-spacing: 1.286px;
     text-transform: uppercase;
     margin-bottom: 20px;
+    @media (min-width: 1440px) {
+      font-size: 56px;
+
+      font-weight: 700;
+      line-height: 58px;
+      letter-spacing: 2px;
+    }
   }
 
   p {
@@ -60,6 +78,13 @@ const MainDiv = styled.div`
     font-weight: 400;
     line-height: 25px;
     margin-bottom: 30px;
+    @media (min-width: 1440px) {
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 25px;
+      width: 349px;
+    }
   }
   .div {
     margin-top: 80px;

@@ -9,6 +9,14 @@ import Personal from "./components/Personal";
 import Footer from "./components/Footer";
 import Card from "./components/Card";
 import Category from "./components/Category";
+import Checkout from "./components/Checkout"; // Import Checkout component
+
+interface HomePagesssProps {
+  productCounters: { [key: number]: number };
+  handleIncrement: (productId: number) => void;
+  handleDecrement: (productId: number) => void;
+  handleAddToCart: (productId: number) => void;
+}
 
 function HomePage() {
   return (
@@ -34,43 +42,75 @@ function HomePagess() {
   );
 }
 
-function HomePagesss({ productCounters, handleIncrement, handleDecrement }) {
+const HomePagesss: React.FC<HomePagesssProps> = ({
+  productCounters,
+  handleIncrement,
+  handleDecrement,
+  handleAddToCart,
+}) => {
   return (
     <>
       <Card
         productCounters={productCounters}
         handleIncrement={handleIncrement}
         handleDecrement={handleDecrement}
+        handleAddToCart={handleAddToCart}
       />
       <Tech />
       <Personal />
       <Footer />
     </>
   );
-}
+};
 
 function App() {
-  const [productCounters, setProductCounters] = useState({});
+  const [productCounter, setProductCounter] = useState<number>(0);
+  const [cart, setCart] = useState([]);
 
-  const handleIncrement = (productId) => {
-    setProductCounters((prev) => ({
-      ...prev,
-      [productId]: (prev[productId] || 0) + 1,
-    }));
+  const handleIncrement = (productId: number) => {
+    setProductCounter((prev) => {
+      const newCounters = { ...prev };
+      newCounters[productId] = (newCounters[productId] || 0) + 1;
+      return newCounters;
+    });
   };
 
-  const handleDecrement = (productId) => {
-    setProductCounters((prev) => ({
-      ...prev,
-      [productId]: prev[productId] > 0 ? prev[productId] - 1 : 0,
-    }));
+  const handleDecrement = (productId: number) => {
+    setProductCounter((prev) => {
+      const newCounters = { ...prev };
+      if (newCounters[productId] > 0) {
+        newCounters[productId] -= 1;
+      }
+      return newCounters;
+    });
   };
 
-  const totalItems = Object.values(productCounters).reduce((a, b) => a + b, 0);
+  const handleAddToCart = (productId: number) => {
+    setProductCounter((prev) => {
+      const newCounters = { ...prev };
+      newCounters[productId] = (newCounters[productId] || 0) + 1;
+      return newCounters;
+    });
+  };
+
+  const [click, setClick] = useState(false);
+  const onClick = () => {
+    setClick(!click);
+  };
+
+  const totalItems = Object.values(productCounter).reduce(
+    (total, count) => total + count,
+    0
+  );
 
   return (
     <BrowserRouter>
-      <Header totalItems={totalItems} />
+      <Header
+        totalItems={totalItems}
+        onClick={onClick}
+        click={click}
+        cartItems={productCounters}
+      />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/:category" element={<HomePagess />} />
@@ -81,9 +121,11 @@ function App() {
               productCounters={productCounters}
               handleIncrement={handleIncrement}
               handleDecrement={handleDecrement}
+              handleAddToCart={handleAddToCart}
             />
           }
         />
+        <Route path="/checkout" element={<Checkout />} />{" "}
       </Routes>
     </BrowserRouter>
   );
