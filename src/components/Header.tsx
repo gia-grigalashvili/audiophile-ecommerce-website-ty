@@ -5,18 +5,46 @@ import check from "/public/assets/Combined Shape 2.svg";
 import Burger from "/public/assets/Group.svg";
 import Logo from "/public/assets/audiophile 2.svg";
 import Tech from "./Tech";
+import Minus from "/public/assets/-.png";
+import Plus from "/public/assets/+.png";
+interface ProductDetail {
+  productId: number;
+  name: string;
+  price: number;
+  image: string;
+  quantity: number;
+}
 
 interface HeaderProps {
   totalItems: number;
+  productCounters: { [key: number]: number };
   click: boolean;
   onClick: () => void;
+  cartProductDetails: ProductDetail[];
+  handleResetCart: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ totalItems, click, onClick }) => {
+const Header: React.FC<HeaderProps> = ({
+  productCounters,
+  totalItems,
+  click,
+  onClick,
+  cartProductDetails,
+  handleResetCart,
+}) => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+  const removeAllItems = () => {
+    handleResetCart();
+  };
+
+  const totalPrice = cartProductDetails.reduce(
+    (total, product) => total + product.price * product.quantity,
+    0
+  );
 
   return (
     <div>
@@ -49,15 +77,33 @@ const Header: React.FC<HeaderProps> = ({ totalItems, click, onClick }) => {
             <CounterDiv>
               <div className="info">
                 <h1>cart ({totalItems})</h1>
-                <p>Remove all</p>
+                <p onClick={removeAllItems}>Remove all</p>
               </div>
-              {/* Add cart items and total calculation here */}
+              <div className="Informations">
+                {cartProductDetails.map((product) => (
+                  <div className="if" key={product.productId}>
+                    <img
+                      className="prduct"
+                      src={product.image}
+                      alt={product.name}
+                    />
+                    <div className="product">
+                      <h1>{product.name}</h1>
+                      <p>$ {product.price}</p>
+                    </div>
+                    <div className="counter">
+                      <img src={Minus} alt="" />
+                      <h5>{productCounters[product.id] || 0}</h5>
+                      <img src={Plus} alt="" />
+                    </div>
+                  </div>
+                ))}
+              </div>
               <div className="TOTAL">
                 <p>TOTAL</p>
-                <h1>55555</h1>
+                <h1>${totalPrice.toFixed(2)}</h1>
               </div>
               <Link to="/checkout">
-                {" "}
                 <button>checkout</button>
               </Link>
             </CounterDiv>
@@ -68,7 +114,6 @@ const Header: React.FC<HeaderProps> = ({ totalItems, click, onClick }) => {
     </div>
   );
 };
-
 const Navigation = styled.div`
   width: 100%;
   padding: 24px;
@@ -213,6 +258,42 @@ const CounterDiv = styled.div`
     &:hover {
       background-color: #7e3f1b;
     }
+  }
+  .if {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .product {
+      display: flex;
+      flex-direction: column;
+      h1 {
+        color: #000;
+        font-family: Manrope;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 25px; /* 166.667% */
+      }
+      P {
+        color: #595959;
+        font-family: Manrope;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 25px; /* 178.571% */
+      }
+    }
+    .product {
+      img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+  .prduct {
+    width: 100px;
+    height: 100px;
   }
 `;
 

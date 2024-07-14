@@ -9,13 +9,20 @@ import Personal from "./components/Personal";
 import Footer from "./components/Footer";
 import Card from "./components/Card";
 import Category from "./components/Category";
-import Checkout from "./components/Checkout"; // Import Checkout component
+import Checkout from "./components/Checkout";
 
 interface HomePagesssProps {
   productCounters: { [key: number]: number };
+  cart: Array<{ productId: number; quantity: number }>;
   handleIncrement: (productId: number) => void;
   handleDecrement: (productId: number) => void;
-  handleAddToCart: (productId: number) => void;
+  handleAddToCart: (
+    productId: number,
+    productName: string,
+    productPrice: number,
+    productImage: string
+  ) => void;
+  handleResetCart: () => void; // Add handleResetCart prop
 }
 
 function HomePage() {
@@ -44,14 +51,17 @@ function HomePagess() {
 
 const HomePagesss: React.FC<HomePagesssProps> = ({
   productCounters,
+  cart,
   handleIncrement,
   handleDecrement,
   handleAddToCart,
+  handleResetCart, // Receive handleResetCart prop
 }) => {
   return (
     <>
       <Card
         productCounters={productCounters}
+        cart={cart}
         handleIncrement={handleIncrement}
         handleDecrement={handleDecrement}
         handleAddToCart={handleAddToCart}
@@ -64,11 +74,25 @@ const HomePagesss: React.FC<HomePagesssProps> = ({
 };
 
 function App() {
-  const [productCounter, setProductCounter] = useState<number>(0);
-  const [cart, setCart] = useState([]);
+  const [productCounters, setProductCounters] = useState<{
+    [key: number]: number;
+  }>({});
+  const [cart, setCart] = useState<
+    Array<{ productId: number; quantity: number }>
+  >([]);
+  const [cartProductDetails, setCartProductDetails] = useState<
+    Array<{
+      productId: number;
+      name: string;
+      price: number;
+      image: string;
+      quantity: number;
+    }>
+  >([]);
+  const [click, setClick] = useState(false);
 
   const handleIncrement = (productId: number) => {
-    setProductCounter((prev) => {
+    setProductCounters((prev) => {
       const newCounters = { ...prev };
       newCounters[productId] = (newCounters[productId] || 0) + 1;
       return newCounters;
@@ -76,7 +100,7 @@ function App() {
   };
 
   const handleDecrement = (productId: number) => {
-    setProductCounter((prev) => {
+    setProductCounters((prev) => {
       const newCounters = { ...prev };
       if (newCounters[productId] > 0) {
         newCounters[productId] -= 1;
@@ -85,31 +109,78 @@ function App() {
     });
   };
 
-  const handleAddToCart = (productId: number) => {
-    setProductCounter((prev) => {
-      const newCounters = { ...prev };
-      newCounters[productId] = (newCounters[productId] || 0) + 1;
-      return newCounters;
-    });
+  const handleAddToCart = (
+    productId: number,
+    productName: string,
+    productPrice: number,
+    productImage: string
+  ) => {
+    if (productCounters[productId] > 0) {
+      setCart((prevCart) => {
+        const existingProduct = prevCart.find(
+          (item) => item.productId === productId
+        );
+        if (existingProduct) {
+          return prevCart.map((item) =>
+            item.productId === productId
+              ? { ...item, quantity: productCounters[productId] }
+              : item
+          );
+        } else {
+          return [
+            ...prevCart,
+            { productId, quantity: productCounters[productId] },
+          ];
+        }
+      });
+
+      setCartProductDetails((prevDetails) => {
+        const existingProduct = prevDetails.find(
+          (item) => item.productId === productId
+        );
+        if (existingProduct) {
+          return prevDetails.map((item) =>
+            item.productId === productId
+              ? { ...item, quantity: productCounters[productId] }
+              : item
+          );
+        } else {
+          return [
+            ...prevDetails,
+            {
+              productId,
+              name: productName,
+              price: productPrice,
+              image: productImage,
+              quantity: productCounters[productId],
+            },
+          ];
+        }
+      });
+    }
   };
 
-  const [click, setClick] = useState(false);
+  const handleResetCart = () => {
+    setProductCounters({});
+    setCart([]);
+    setCartProductDetails([]);
+  };
+
   const onClick = () => {
     setClick(!click);
   };
 
-  const totalItems = Object.values(productCounter).reduce(
-    (total, count) => total + count,
-    0
-  );
+  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <BrowserRouter>
       <Header
+        productCounters={productCounters}
         totalItems={totalItems}
         onClick={onClick}
         click={click}
-        cartItems={productCounters}
+        cartProductDetails={cartProductDetails}
+        handleResetCart={handleResetCart} // Pass handleResetCart to Header
       />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -119,13 +190,15 @@ function App() {
           element={
             <HomePagesss
               productCounters={productCounters}
+              cart={cart}
               handleIncrement={handleIncrement}
               handleDecrement={handleDecrement}
               handleAddToCart={handleAddToCart}
+              handleResetCart={handleResetCart} // Pass handleResetCart to HomePagesss
             />
           }
         />
-        <Route path="/checkout" element={<Checkout />} />{" "}
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </BrowserRouter>
   );

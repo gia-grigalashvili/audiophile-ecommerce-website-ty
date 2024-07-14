@@ -7,15 +7,23 @@ import Plus from "/public/assets/+.png";
 
 interface CardProps {
   productCounters: { [key: number]: number };
+  cart: Array<{ productId: number; quantity: number }>;
   handleIncrement: (productId: number) => void;
   handleDecrement: (productId: number) => void;
-  handleAddToCart: (productId: number) => void;
+  handleAddToCart: (
+    productId: number,
+    productName: string,
+    productPrice: number,
+    productImage: string
+  ) => void;
 }
 
 const Card: React.FC<CardProps> = ({
   productCounters,
+  cart,
   handleIncrement,
   handleDecrement,
+  handleAddToCart,
 }) => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -23,6 +31,10 @@ const Card: React.FC<CardProps> = ({
 
   const handleViewProduct = (productId: number) => {
     navigate(`/product/${productId}`);
+  };
+
+  const isProductInCart = (productId: number) => {
+    return cart.some((item) => item.productId === productId);
   };
 
   return (
@@ -51,7 +63,19 @@ const Card: React.FC<CardProps> = ({
                   onClick={() => handleIncrement(product.id)}
                 />
               </COUNTERS>
-              <Button>ADD TO CART</Button>
+              <Button
+                onClick={() =>
+                  handleAddToCart(
+                    product.id,
+                    product.name,
+                    product.price,
+                    product.image.mobile
+                  )
+                }
+                disabled={productCounters[product.id] <= 0}
+              >
+                ADD TO CART
+              </Button>
             </COUNTERSDIV>
             <h1>Features</h1>
             <p>{product.features}</p>
