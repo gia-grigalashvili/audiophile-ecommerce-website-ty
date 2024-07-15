@@ -36,7 +36,7 @@ const MainDiv = styled.div`
   justify-content: center;
   align-items: center;
   padding: 30px;
-  height: 729px;
+  height: 100vh;
   text-align: center;
   @media (min-width: 1440px) {
     background-image: url("/public/assets/home/desktop/image-hero.jpg");

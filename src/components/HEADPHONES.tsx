@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import headphoness from "/public/assets/home/desktop/image-earphones-yx1.jpg";
+import headphoness from "/assets/home/desktop/image-earphones-yx1.jpg";
 import { useNavigate } from "react-router-dom";
 function HeadPhones() {
   const navigate = useNavigate();

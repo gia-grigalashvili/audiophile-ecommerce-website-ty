@@ -13,6 +13,7 @@ type Inputs = {
   YourAddress: string;
   "ZIP Code": string;
   City: string;
+  cartProductDetails: Inputs[];
   Country: string; // Added Country field to Inputs type
 };
 
@@ -36,9 +37,10 @@ const schema = yup.object({
   Country: yup.string().required("Country is required"), // Added validation for Country
 });
 
-function Checkout() {
+function Checkout({ cartProductDetails, totalItems }) {
   const {
     register,
+
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>({
@@ -47,9 +49,16 @@ function Checkout() {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data);
-    // Handle form submission logic here, e.g., send data to server, redirect, etc.
   };
   const navigate = useNavigate();
+
+  const totalPrice = cartProductDetails.reduce(
+    (total: number, product: { price: number; quantity: number }) =>
+      total + product.price * product.quantity,
+    0
+  );
+  const total = (totalPrice * 20) / 100 + 50;
+  const jami = total + totalPrice;
   return (
     <div>
       <p onClick={() => navigate(-1)}>GO BACK</p>
@@ -104,7 +113,36 @@ function Checkout() {
           {errors.Country && <p>{errors.Country.message}</p>}
         </div>
 
-        <button type="submit">Submit</button>
+        <Build>
+          <h1>summary</h1>
+          {cartProductDetails.map((product) => (
+            <div className="if" key={product.productId}>
+              <img src={product.image} alt={product.name} />
+              <div className="product">
+                <h1>{product.name}</h1>
+                <p>$ {product.price}</p>
+              </div>
+              <h6>x{totalItems}</h6>
+            </div>
+          ))}
+          <div className="to">
+            <h3>TOTAL</h3>
+            <h1>${totalPrice.toFixed(2)}</h1>
+          </div>
+          <div className="to">
+            <h3>SHIPPING</h3>
+            <h1>$50</h1>
+          </div>
+          <div className="to">
+            <h3>VAT (INCLUDED)</h3>
+            <h1>${total}</h1>
+          </div>{" "}
+          <div className="to">
+            <h3>GRAND TOTAL</h3>
+            <h1>${jami}</h1>
+          </div>
+          <button type="submit">Submit</button>
+        </Build>
       </FormStyled>
     </div>
   );
@@ -178,5 +216,63 @@ const FormStyled = styled.form`
     }
   }
 `;
+const Build = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
 
+  .if {
+    display: flex;
+    padding-top: 20px;
+    justify-content: space-between;
+    img {
+      width: 74px;
+      height: 74px;
+    }
+    .product {
+      display: flex;
+      flex-direction: column;
+      h1 {
+        color: #000;
+        font-family: Manrope;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 25px; /* 166.667% */
+      }
+      h6 {
+        color: #727272;
+        text-align: right;
+        font-family: Manrope;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 25px; /* 166.667% */
+      }
+    }
+  }
+  .to {
+    display: flex;
+    justify-content: space-between;
+
+    h1 {
+      color: #000;
+      text-align: right;
+      font-family: Manrope;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      text-transform: uppercase;
+    }
+    h3 {
+      color: #848484;
+      font-family: Manrope;
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 25px; /* 166.667% */
+    }
+  }
+`;
 export default Checkout;

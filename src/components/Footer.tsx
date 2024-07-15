@@ -1,8 +1,8 @@
-import Logo from "/public/assets/audiophile 2.svg";
+import Logo from "/assets/audiophile 2.svg";
 import styled from "styled-components";
-import Facebok from "/public/assets/shared/desktop/icon-facebook.svg";
-import instagram from "/public/assets/shared/desktop/icon-instagram.svg";
-import twitter from "/public/assets/shared/desktop/icon-twitter.svg";
+import Facebok from "/assets/shared/desktop/icon-facebook.svg";
+import instagram from "/assets/shared/desktop/icon-instagram.svg";
+import twitter from "/assets/shared/desktop/icon-twitter.svg";
 import { Link } from "react-router-dom";
 function Footer() {
   return (
@@ -68,7 +68,7 @@ const Infor = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
-  h1 {
+  a {
     color: #fff;
     font-family: Manrope;
     font-size: 13px;
@@ -77,6 +77,7 @@ const Infor = styled.div`
     line-height: 25px; /* 192.308% */
     letter-spacing: 2px;
     text-transform: uppercase;
+    text-decoration: none;
     cursor: pointer;
     &:hover {
       color: #d87d4a;

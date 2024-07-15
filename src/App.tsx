@@ -177,7 +177,9 @@ function App() {
       <Header
         productCounters={productCounters}
         totalItems={totalItems}
+        handleDecrement={handleDecrement}
         onClick={onClick}
+        handleIncrement={handleIncrement}
         click={click}
         cartProductDetails={cartProductDetails}
         handleResetCart={handleResetCart} // Pass handleResetCart to Header
@@ -198,7 +200,15 @@ function App() {
             />
           }
         />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route
+          path="/checkout"
+          element={
+            <Checkout
+              cartProductDetails={cartProductDetails}
+              totalItems={totalItems}
+            />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

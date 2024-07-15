@@ -7,6 +7,7 @@ import Logo from "/public/assets/audiophile 2.svg";
 import Tech from "./Tech";
 import Minus from "/public/assets/-.png";
 import Plus from "/public/assets/+.png";
+
 interface ProductDetail {
   productId: number;
   name: string;
@@ -21,15 +22,19 @@ interface HeaderProps {
   click: boolean;
   onClick: () => void;
   cartProductDetails: ProductDetail[];
+  handleIncrement: (productId: number) => void;
+  handleDecrement: (productId: number) => void;
   handleResetCart: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({
   productCounters,
+  handleIncrement,
   totalItems,
   click,
   onClick,
   cartProductDetails,
+  handleDecrement,
   handleResetCart,
 }) => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -54,18 +59,21 @@ const Header: React.FC<HeaderProps> = ({
           <img className="logo" src={Logo} alt="Audiophile Logo" />
         </Link>
         <MenuItems open={menuOpen}>
-          <p>
-            <Link to="/">Home</Link>
-          </p>
-          <p>
-            <Link to="/headphones">HEADPHONES</Link>
-          </p>
-          <p>
-            <Link to="/speakers">SPEAKERS</Link>
-          </p>
-          <p>
-            <Link to="/earphones">EARPHONES</Link>
-          </p>
+          <div className="is">
+            <p>
+              <Link to="/">Home</Link>
+            </p>
+            <p>
+              <Link to="/headphones">HEADPHONES</Link>
+            </p>
+            <p>
+              <Link to="/speakers">SPEAKERS</Link>
+            </p>
+            <p>
+              <Link to="/earphones">EARPHONES</Link>
+            </p>
+          </div>
+
           <TechWrapper>
             <Tech />
           </TechWrapper>
@@ -92,9 +100,19 @@ const Header: React.FC<HeaderProps> = ({
                       <p>$ {product.price}</p>
                     </div>
                     <div className="counter">
-                      <img src={Minus} alt="" />
-                      <h5>{productCounters[product.id] || 0}</h5>
-                      <img src={Plus} alt="" />
+                      <img
+                        onClick={() => handleDecrement(product.productId)}
+                        className="Minus"
+                        src={Minus}
+                        alt=""
+                      />
+                      <h5>{productCounters[product.productId] || 0}</h5>
+                      <img
+                        onClick={() => handleIncrement(product.productId)}
+                        className="Plus"
+                        src={Plus}
+                        alt=""
+                      />
                     </div>
                   </div>
                 ))}
@@ -135,20 +153,32 @@ const Navigation = styled.div`
 const MenuItems = styled.div<{ open: boolean }>`
   display: flex;
   gap: 20px;
+
+  justify-content: space-around;
+  .is {
+    display: flex;
+    gap: 100px;
+    @media (max-width: 800px) {
+      display: none;
+    }
+  }
+
   @media (max-width: 800px) {
-    display: ${(props) => (props.open ? "flex" : "none")};
+    display: none;
     flex-direction: column;
     position: absolute;
     top: 10.3%;
     left: 0;
-    height: 100vh;
+    height: 800px;
     width: 100%;
     background: #fff;
     padding: 20px;
     transition: transform 0.3s ease-in-out;
+    display: block;
     transform: ${(props) =>
       props.open ? "translateX(0)" : "translateX(-100%)"};
   }
+
   a {
     color: #fff;
     font-family: Manrope;
@@ -242,6 +272,9 @@ const CounterDiv = styled.div`
     justify-content: space-between;
   }
   button {
+    width: 271px;
+    height: 48px;
+    flex-shrink: 0;
     height: 48px;
     background: #d87d4a;
     border: none;
@@ -261,7 +294,7 @@ const CounterDiv = styled.div`
   }
   .if {
     display: flex;
-    justify-content: space-around;
+    gap: 10px;
     align-items: center;
 
     .product {
@@ -284,16 +317,25 @@ const CounterDiv = styled.div`
         line-height: 25px; /* 178.571% */
       }
     }
-    .product {
-      img {
-        width: 40px;
-        height: 40px;
-      }
-    }
   }
   .prduct {
-    width: 100px;
-    height: 100px;
+    width: 85px;
+    border-radius: 20px;
+    height: 85px;
+  }
+  .counter {
+    display: flex;
+    gap: 20px;
+    .Minus {
+      width: 16px;
+      height: 20px;
+      cursor: pointer;
+    }
+    .Plus {
+      width: 16px;
+      height: 20px;
+      cursor: pointer;
+    }
   }
 `;
 

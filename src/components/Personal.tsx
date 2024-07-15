@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Person from "/public/assets/shared/mobile/image-best-gear.jpg";
+import Person from "/assets/shared/mobile/image-best-gear.jpg";
 
 function Personal() {
   return (

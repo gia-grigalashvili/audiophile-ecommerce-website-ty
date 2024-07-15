@@ -23,12 +23,14 @@ function Category() {
         {products.map((product) => (
           <div key={product.id}>
             <img src={product.image.mobile} alt={product.name} />
-            {product.new && <span>NEW PRODUCT</span>}
-            <h1>{product.name}</h1>
-            <p>{product.description}</p>
-            <Button onClick={() => handleViewProduct(product.id)}>
-              See Product
-            </Button>
+            <div className="inf">
+              {product.new && <span>NEW PRODUCT</span>}
+              <h1>{product.name}</h1>
+              <p>{product.description}</p>
+              <Button onClick={() => handleViewProduct(product.id)}>
+                See Product
+              </Button>
+            </div>
           </div>
         ))}
       </Maindiv>
@@ -61,6 +63,13 @@ const Maindiv = styled.div`
     letter-spacing: 10px;
     text-transform: uppercase;
   }
+  .inf {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    margin-top: 20px;
+  }
 `;
 const Button = styled.button`
   width: 160px;
@@ -76,6 +85,7 @@ const Button = styled.button`
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
+
   margin-top: 20px;
 `;
 const Header = styled.div`

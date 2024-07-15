@@ -7,7 +7,7 @@ import Plus from "/public/assets/+.png";
 
 interface CardProps {
   productCounters: { [key: number]: number };
-  cart: Array<{ productId: number; quantity: number }>;
+
   handleIncrement: (productId: number) => void;
   handleDecrement: (productId: number) => void;
   handleAddToCart: (
@@ -20,7 +20,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({
   productCounters,
-  cart,
+
   handleIncrement,
   handleDecrement,
   handleAddToCart,
@@ -33,10 +33,6 @@ const Card: React.FC<CardProps> = ({
     navigate(`/product/${productId}`);
   };
 
-  const isProductInCart = (productId: number) => {
-    return cart.some((item) => item.productId === productId);
-  };
-
   return (
     <div>
       <p onClick={() => navigate(-1)}>GO BACK</p>
@@ -46,7 +42,7 @@ const Card: React.FC<CardProps> = ({
             <img src={product.image.mobile} alt={product.name} />
             <h1>{product.name}</h1>
             <p>{product.description}</p>
-            <h3>${product.price}</h3>
+            <h3>${product.price.toFixed(2)}</h3>
             <COUNTERSDIV>
               <COUNTERS>
                 <img
@@ -92,10 +88,11 @@ const Card: React.FC<CardProps> = ({
               <img src={product.gallery.second.mobile} alt="Gallery Image 2" />
               <img src={product.gallery.third.mobile} alt="Gallery Image 3" />
             </Gallery>
-            <h1>You may also like</h1>
+
             <OtherProducts>
               {product.others.map((other, index) => (
                 <OtherProduct key={index}>
+                  <h1>You may also like</h1>
                   <img
                     className="images"
                     src={other.image.mobile}
@@ -215,7 +212,7 @@ const IncludesList = styled.ul`
     font-size: 15px;
     font-weight: 700;
     margin-top: 10px;
-    color: #000;
+    color: #707070;
     display: flex;
     gap: 20px;
     strong {
@@ -240,7 +237,7 @@ const Gallery = styled.div`
 const OtherProducts = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 50px;
   margin-top: 20px;
 `;
 
@@ -248,10 +245,12 @@ const OtherProduct = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 20px;
+  gap: 20px;
 
   img {
     width: 327px;
-    height: 120px;
+    height: 125px;
     border-radius: 8px;
   }
 
