@@ -133,10 +133,12 @@ const Header: React.FC<HeaderProps> = ({
                 <p>TOTAL</p>
                 <h1>${totalPrice.toFixed(2)}</h1>
               </div>
-              {/* Link to checkout */}
-              <Link to="/checkout">
-                <button>checkout</button>
-              </Link>
+              {/* Conditionally render checkout button */}
+              {totalItems > 0 && (
+                <Link to="/checkout">
+                  <button>checkout</button>
+                </Link>
+              )}
               {/* Display successful purchase message */}
               {successfulPurchase && <p>Successful purchase!</p>}
             </CounterDiv>

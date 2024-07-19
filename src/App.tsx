@@ -223,7 +223,7 @@ function App() {
               handleIncrement={handleIncrement}
               handleDecrement={handleDecrement}
               handleAddToCart={handleAddToCart}
-              handleResetCart={handleResetCart} // Pass handleResetCart to HomePagesss
+              handleResetCart={handleResetCart}
             />
           }
         />

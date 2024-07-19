@@ -58,7 +58,7 @@ const Maindiv = styled.div`
     flex-direction: row;
     text-align: unset;
     gap: 100px;
-
+    background-position: center;
     .img {
       background-image: url("/public/assets/shared/desktop/image-best-gear.jpg");
       width: 540px;

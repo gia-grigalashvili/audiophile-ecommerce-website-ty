@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import GROUP from "/public/assets/Group 12.png";
 interface FinishProps {
   cartProductDetails: {
@@ -13,7 +14,7 @@ interface FinishProps {
   onClose: () => void;
 }
 
-const Finish: React.FC<FinishProps> = ({ cartProductDetails, onClose }) => {
+const Finish: React.FC<FinishProps> = ({ cartProductDetails }) => {
   const navigate = useNavigate();
 
   // Calculate total price
@@ -30,11 +31,6 @@ const Finish: React.FC<FinishProps> = ({ cartProductDetails, onClose }) => {
 
   // Calculate grand total
   const grandTotal = totalWithShipping + totalVAT;
-
-  const handleBackToHome = () => {
-    onClose(); // Close the modal and reset the cart
-    navigate("/"); // Navigate to the home page
-  };
 
   return (
     <ModalOverlay>
@@ -64,7 +60,10 @@ const Finish: React.FC<FinishProps> = ({ cartProductDetails, onClose }) => {
           </Total>
         </OrderSummary>
         <ButtonContainer>
-          <button onClick={handleBackToHome}>BACK TO HOME</button>
+          <Link to="/header">
+            {" "}
+            <button>BACK TO HOME</button>
+          </Link>
         </ButtonContainer>
       </ModalContent>
     </ModalOverlay>
