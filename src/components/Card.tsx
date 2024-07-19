@@ -47,7 +47,6 @@ const Card: React.FC<CardProps> = ({
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  // Ensure `id` is defined before using it
   const productId = id ? parseInt(id, 10) : null;
   const product: Product | null = productId
     ? (data as unknown as Product[]).find((item) => item.id === productId) ||
