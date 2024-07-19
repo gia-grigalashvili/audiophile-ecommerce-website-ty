@@ -7,35 +7,40 @@ import { Link } from "react-router-dom";
 function Footer() {
   return (
     <Footerdiv>
-      <Link to="/">
-        <img className="logo" src={Logo} alt="Audiophile Logo" />
-      </Link>
-      <Infor>
-        <h1>
-          <Link to="/">Home</Link>
-        </h1>
-        <h1>
-          <Link to="/headphones">HEADPHONES</Link>
-        </h1>
-        <h1>
-          <Link to="/speakers">SPEAKERS</Link>
-        </h1>
-        <h1>
-          <Link to="/earphones">EARPHONES</Link>
-        </h1>
-      </Infor>
+      <div className="medai">
+        <Link to="/">
+          <img className="logo" src={Logo} alt="Audiophile Logo" />
+        </Link>
+        <Infor>
+          <h1>
+            <Link to="/">Home</Link>
+          </h1>
+          <h1>
+            <Link to="/headphones">HEADPHONES</Link>
+          </h1>
+          <h1>
+            <Link to="/speakers">SPEAKERS</Link>
+          </h1>
+          <h1>
+            <Link to="/earphones">EARPHONES</Link>
+          </h1>
+        </Infor>
+      </div>
+
       <p>
         Audiophile is an all in one stop to fulfill your audio needs. We're a
         small team of music lovers and sound specialists who are devoted to
         helping you get the most out of personal audio. Come and visit our demo
         facility - we’re open 7 days a week.
       </p>
-      <p>Copyright 2021. All Rights Reserved</p>
-      <Social>
-        <img src={Facebok} alt="" />
-        <img src={instagram} alt="" />
-        <img src={twitter} alt="" />
-      </Social>
+      <div className="socil">
+        <p>Copyright 2021. All Rights Reserved</p>
+        <Social>
+          <img src={Facebok} alt="" />
+          <img src={instagram} alt="" />
+          <img src={twitter} alt="" />
+        </Social>
+      </div>
     </Footerdiv>
   );
 }
@@ -58,6 +63,37 @@ const Footerdiv = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: 25px; /* 166.667% */
+    @media (min-width: 740px) {
+      text-align: unset;
+    }
+    @media (min-width: 1440px) {
+      flex-direction: row;
+      width: 540px;
+      justify-content: space-between;
+    }
+  }
+  @media (min-width: 740px) {
+    text-align: unset;
+    align-items: unset;
+  }
+  .socil {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    @media (min-width: 740px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+  .medai {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    @media (min-width: 740px) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
 `;
 const Social = styled.div`
@@ -82,6 +118,9 @@ const Infor = styled.div`
     &:hover {
       color: #d87d4a;
     }
+  }
+  @media (min-width: 740px) {
+    flex-direction: row;
   }
 `;
 export default Footer;

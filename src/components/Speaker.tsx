@@ -127,8 +127,28 @@ const Speakerdiv = styled.div`
     font-weight: 400;
     line-height: 25px; /* 166.667% */
   }
-
   @media (min-width: 750px) {
+    width: 689px;
+    height: 720px;
+
+    gap: 120px;
+
+    p {
+      width: 349px;
+      font-size: 15px;
+
+      margin-top: 20px;
+    }
+    h1 {
+      font-size: 56px;
+
+      font-weight: 700;
+      line-height: 58px; /* 103.571% */
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+  }
+  @media (min-width: 1440px) {
     width: 1110px;
     height: 560px;
     flex-direction: row;
@@ -192,6 +212,12 @@ const SECONDDIV = styled.div`
       background-color: #000;
       color: aliceblue;
     }
+  }
+  @media (min-width: 740px) {
+    background-image: url("/public/assets/home/tablet/image-speaker-zx7.jpg");
+    width: 689px;
+
+    padding: 100px;
   }
   @media (min-width: 1440px) {
     background-image: url("/public/assets/home/desktop/image-speaker-zx7.jpg");

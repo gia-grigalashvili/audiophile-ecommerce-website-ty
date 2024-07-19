@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import Card from "./components/Card";
 import Category from "./components/Category";
 import Checkout from "./components/Checkout";
+import Finish from "./components/Finish";
 
 interface HomePagesssProps {
   productCounters: { [key: number]: number };
@@ -22,7 +23,7 @@ interface HomePagesssProps {
     productPrice: number,
     productImage: string
   ) => void;
-  handleResetCart: () => void; // Add handleResetCart prop
+  handleResetCart: () => void;
 }
 
 function HomePage() {
@@ -34,6 +35,33 @@ function HomePage() {
       <HeadPhones />
       <Personal />
       <Footer />
+    </>
+  );
+}
+
+function HomePagsae({
+  cartProductDetails,
+  handleResetCart,
+}: {
+  cartProductDetails: {
+    productId: number;
+    name: string;
+    price: number;
+    image: string;
+    quantity: number;
+  }[];
+  handleResetCart: () => void;
+}) {
+  return (
+    <>
+      <Checkout
+        cartProductDetails={cartProductDetails}
+        totalItems={cartProductDetails.length}
+      />
+      <Finish
+        cartProductDetails={cartProductDetails}
+        onClose={handleResetCart}
+      />
     </>
   );
 }
@@ -55,7 +83,6 @@ const HomePagesss: React.FC<HomePagesssProps> = ({
   handleIncrement,
   handleDecrement,
   handleAddToCart,
-  handleResetCart, // Receive handleResetCart prop
 }) => {
   return (
     <>
@@ -206,6 +233,15 @@ function App() {
             <Checkout
               cartProductDetails={cartProductDetails}
               totalItems={totalItems}
+            />
+          }
+        />
+        <Route
+          path="/finish"
+          element={
+            <Finish
+              cartProductDetails={cartProductDetails}
+              onClose={handleResetCart}
             />
           }
         />

@@ -38,6 +38,24 @@ const MainDiv = styled.div`
   padding: 30px;
   height: 100vh;
   text-align: center;
+  @media (min-width: 740px) {
+    background-image: url("/public/assets/home/tablet/image-header.jpg");
+    height: 100vh;
+    background-size: cover;
+
+    padding: 100px;
+  }
+  @media (min-width: 740px) {
+    color: #fff;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 56px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 58px; /* 103.571% */
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
   @media (min-width: 1440px) {
     background-image: url("/public/assets/home/desktop/image-hero.jpg");
     height: 100vh;
@@ -46,6 +64,7 @@ const MainDiv = styled.div`
     align-items: unset;
     padding: 100px;
   }
+
   h2 {
     color: #707070;
     font-size: 14px;
@@ -78,6 +97,18 @@ const MainDiv = styled.div`
     font-weight: 400;
     line-height: 25px;
     margin-bottom: 30px;
+
+    @media (min-width: 740px) {
+      color: #fff;
+      text-align: center;
+      font-family: Manrope;
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 25px;
+      text-align: unset;
+      width: 389px;
+    }
     @media (min-width: 1440px) {
       font-size: 15px;
       font-style: normal;

@@ -25,6 +25,7 @@ interface HeaderProps {
   handleIncrement: (productId: number) => void;
   handleDecrement: (productId: number) => void;
   handleResetCart: () => void;
+  successfulPurchase: boolean; // Include successful purchase state
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -36,8 +37,10 @@ const Header: React.FC<HeaderProps> = ({
   cartProductDetails,
   handleDecrement,
   handleResetCart,
+  successfulPurchase,
 }) => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -54,10 +57,13 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <div>
       <Navigation>
+        {/* Menu toggle */}
         <img className="burger" src={Burger} onClick={toggleMenu} alt="Menu" />
+        {/* Audiophile logo */}
         <Link to="/">
           <img className="logo" src={Logo} alt="Audiophile Logo" />
         </Link>
+        {/* Menu items */}
         <MenuItems open={menuOpen}>
           <div className="is">
             <p>
@@ -74,13 +80,17 @@ const Header: React.FC<HeaderProps> = ({
             </p>
           </div>
 
+          {/* Tech component */}
           <TechWrapper>
             <Tech />
           </TechWrapper>
         </MenuItems>
+        {/* Cart icon */}
         <Cart>
           <img onClick={onClick} src={check} alt="Check" />
+          {/* Display total items count */}
           {totalItems > 0 && <ItemCount>{totalItems}</ItemCount>}
+          {/* Show cart content */}
           {click && (
             <CounterDiv>
               <div className="info">
@@ -88,6 +98,7 @@ const Header: React.FC<HeaderProps> = ({
                 <p onClick={removeAllItems}>Remove all</p>
               </div>
               <div className="Informations">
+                {/* Display cart products */}
                 {cartProductDetails.map((product) => (
                   <div className="if" key={product.productId}>
                     <img
@@ -100,6 +111,7 @@ const Header: React.FC<HeaderProps> = ({
                       <p>$ {product.price}</p>
                     </div>
                     <div className="counter">
+                      {/* Increment and decrement buttons */}
                       <img
                         onClick={() => handleDecrement(product.productId)}
                         className="Minus"
@@ -121,9 +133,12 @@ const Header: React.FC<HeaderProps> = ({
                 <p>TOTAL</p>
                 <h1>${totalPrice.toFixed(2)}</h1>
               </div>
+              {/* Link to checkout */}
               <Link to="/checkout">
                 <button>checkout</button>
               </Link>
+              {/* Display successful purchase message */}
+              {successfulPurchase && <p>Successful purchase!</p>}
             </CounterDiv>
           )}
         </Cart>
@@ -132,6 +147,7 @@ const Header: React.FC<HeaderProps> = ({
     </div>
   );
 };
+
 const Navigation = styled.div`
   width: 100%;
   padding: 24px;
@@ -144,8 +160,11 @@ const Navigation = styled.div`
   }
   .burger {
     display: block;
-    @media (min-width: 750px) {
+    @media (min-width: 1300px) {
       display: none;
+    }
+    @media (min-width: 750px) {
+      justify-content: space-evenly;
     }
   }
 `;
@@ -158,7 +177,7 @@ const MenuItems = styled.div<{ open: boolean }>`
   .is {
     display: flex;
     gap: 100px;
-    @media (max-width: 800px) {
+    @media (max-width: 1200px) {
       display: none;
     }
   }

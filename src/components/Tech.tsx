@@ -61,6 +61,15 @@ const Maindiv = styled.div`
     letter-spacing: 1px;
     text-transform: uppercase;
   }
+  @media (min-width: 740px) {
+    flex-direction: row;
+    justify-content: center;
+    img {
+      width: 147px;
+      height: 133px;
+      margin-top: -60px;
+    }
+  }
   @media (min-width: 1440px) {
     flex-direction: row;
     justify-content: center;
@@ -82,6 +91,16 @@ const Stylediv = styled.div`
   width: 290px;
   height: 155px;
   align-items: center;
+  @media (min-width: 740px) {
+    width: 223px;
+    height: 165px;
+    flex-shrink: 0;
+  }
+  @media (min-width: 1440px) {
+    width: 350px;
+    height: 204px;
+    flex-shrink: 0;
+  }
 `;
 
 const ARROWs = styled.div`

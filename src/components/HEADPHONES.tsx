@@ -26,6 +26,15 @@ const Maindiv = styled.div`
     height: 210px;
     border-radius: 8px;
   }
+  @media (min-width: 740px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 330px;
+      height: 320px;
+    }
+  }
   @media (min-width: 1440px) {
     flex-direction: row;
     align-items: center;
@@ -65,6 +74,12 @@ const Secondidv = styled.div`
       background: #000;
       color: #f1f1f1;
     }
+  }
+  @media (min-width: 740px) {
+    width: 320px;
+    height: 320px;
+    padding: 100px;
+    justify-content: center;
   }
   @media (min-width: 1440px) {
     width: 540px;

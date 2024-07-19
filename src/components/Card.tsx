@@ -39,71 +39,137 @@ const Card: React.FC<CardProps> = ({
       <ContainerDiv>
         {product ? (
           <div>
-            <img src={product.image.mobile} alt={product.name} />
-            <h1>{product.name}</h1>
-            <p>{product.description}</p>
-            <h3>${product.price.toFixed(2)}</h3>
-            <COUNTERSDIV>
-              <COUNTERS>
+            <div className="is">
+              <div>
                 <img
-                  className="Minus"
-                  src={Minus}
-                  alt="Decrement"
-                  onClick={() => handleDecrement(product.id)}
+                  className="mms"
+                  src={product.image.mobile}
+                  alt={product.name}
                 />
-                <h5>{productCounters[product.id] || 0}</h5>
-                <img
-                  className="Plus"
-                  src={Plus}
-                  alt="Increment"
-                  onClick={() => handleIncrement(product.id)}
-                />
-              </COUNTERS>
-              <Button
-                onClick={() =>
-                  handleAddToCart(
-                    product.id,
-                    product.name,
-                    product.price,
-                    product.image.mobile
-                  )
-                }
-                disabled={productCounters[product.id] <= 0}
-              >
-                ADD TO CART
-              </Button>
-            </COUNTERSDIV>
-            <h1>Features</h1>
-            <p>{product.features}</p>
-            <h1 className="IntheBox">In the Box</h1>
-            <IncludesList>
-              {product.includes.map((item, index) => (
-                <li key={index}>
-                  <strong>{item.quantity}x</strong> {item.item}
-                </li>
-              ))}
-            </IncludesList>
+              </div>
+              <div className="mainis">
+                <h1>{product.name}</h1>
+                <p>{product.description}</p>
+                <h3>${product.price.toFixed(2)}</h3>
+                <COUNTERSDIV>
+                  <COUNTERS>
+                    <img
+                      className="Minus"
+                      src={Minus}
+                      alt="Decrement"
+                      onClick={() => handleDecrement(product.id)}
+                    />
+                    <h5>{productCounters[product.id] || 0}</h5>
+                    <img
+                      className="Plus"
+                      src={Plus}
+                      alt="Increment"
+                      onClick={() => handleIncrement(product.id)}
+                    />
+                  </COUNTERS>
+
+                  <Button
+                    onClick={() =>
+                      handleAddToCart(
+                        product.id,
+                        product.name,
+                        product.price,
+                        product.image.mobile
+                      )
+                    }
+                    disabled={productCounters[product.id] <= 0}
+                  >
+                    ADD TO CART
+                  </Button>
+                </COUNTERSDIV>
+              </div>
+            </div>
+            <div className="Features">
+              <div className="Featuresinfo">
+                <h1>Features</h1>
+                <p>{product.features}</p>
+              </div>
+              <div>
+                <h1 className="IntheBox">In the Box</h1>
+                <IncludesList>
+                  {product.includes.map((item, index) => (
+                    <li key={index}>
+                      <strong>{item.quantity}x</strong> {item.item}
+                    </li>
+                  ))}
+                </IncludesList>
+              </div>
+            </div>
             <Gallery>
-              <img src={product.gallery.first.mobile} alt="Gallery Image 1" />
-              <img src={product.gallery.second.mobile} alt="Gallery Image 2" />
-              <img src={product.gallery.third.mobile} alt="Gallery Image 3" />
+              <div className="room">
+                <img
+                  className="mobile"
+                  src={product.gallery.first.mobile}
+                  alt="Gallery Image 1"
+                />
+                <img
+                  className="tablet"
+                  src={product.gallery.first.tablet}
+                  alt="Gallery Image 1"
+                />
+                <img
+                  className="desktop"
+                  src={product.gallery.first.desktop}
+                  alt="Gallery Image 1"
+                />
+                <img
+                  src={product.gallery.second.mobile}
+                  alt="Gallery Image 2"
+                />
+                <img
+                  className="tablet"
+                  src={product.gallery.second.tablet}
+                  alt="Gallery Image 1"
+                />
+                <img
+                  className="mobile"
+                  src={product.gallery.second.mobile}
+                  alt="Gallery Image 1"
+                />
+              </div>
+
+              <div>
+                <img
+                  className="mobile"
+                  src={product.gallery.third.mobile}
+                  alt="Gallery Image 3"
+                />
+                <img
+                  className="tablet"
+                  src={product.gallery.third.tablet}
+                  alt="Gallery Image 3"
+                />
+                <img
+                  className="desktop  lomi"
+                  src={product.gallery.third.desktop}
+                  alt="Gallery Image 3"
+                />
+              </div>
             </Gallery>
 
             <OtherProducts>
-              {product.others.map((other, index) => (
-                <OtherProduct key={index}>
-                  <h1>You may also like</h1>
-                  <img
-                    className="images"
-                    src={other.image.mobile}
-                    alt={other.name}
-                  />
-                  <h4>{other.name}</h4>
-                  <Button onClick={() => handleViewProduct(other.id)}>
-                    See Product
-                  </Button>
-                </OtherProduct>
-              ))}
+              <h1>You may also like</h1>
+              <div className="productssa">
+                {product.others.map((other, index) => (
+                  <OtherProduct key={index}>
+                    <img
+                      className="images"
+                      src={other.image.mobile}
+                      alt={other.name}
+                    />
+
+                    <h4>{other.name}</h4>
+                    <Button onClick={() => handleViewProduct(other.id)}>
+                      See Product
+                    </Button>
+                  </OtherProduct>
+                ))}
+              </div>
             </OtherProducts>
           </div>
         ) : (
@@ -119,10 +185,14 @@ const ContainerDiv = styled.div`
   flex-direction: column;
   padding: 20px;
   margin-top: 20px;
-  img {
+  .mms {
     width: 327px;
     height: 327px;
     border-radius: 8px;
+    @media (min-width: 1440px) {
+      width: 540px;
+      height: 560px;
+    }
   }
   h1 {
     color: #000;
@@ -173,6 +243,43 @@ const ContainerDiv = styled.div`
     height: 20px;
     cursor: pointer;
   }
+  .is {
+    display: flex;
+    flex-direction: column;
+    @media (min-width: 1440px) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+    .mainis {
+      @media (min-width: 1440px) {
+        width: 445.5px;
+        height: 390px;
+      }
+    }
+  }
+  .Features {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    @media (min-width: 1440px) {
+      flex-direction: row;
+      align-items: center;
+    }
+    .Featuresinfo {
+      @media (min-width: 1440px) {
+        p {
+          width: 635px;
+          color: #000;
+          font-family: Manrope;
+          font-size: 15px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 25px;
+        }
+      }
+    }
+  }
 `;
 
 const COUNTERS = styled.div`
@@ -185,6 +292,10 @@ const COUNTERSDIV = styled.div`
   gap: 20px;
   align-items: center;
   justify-content: center;
+  @media (min-width: 1440px) {
+    justify-content: unset;
+    margin-top: 20px;
+  }
 `;
 
 const Button = styled.button`
@@ -226,11 +337,72 @@ const Gallery = styled.div`
   flex-direction: column;
   gap: 20px;
   margin-top: 20px;
-
+  .room {
+    @media (min-width: 740px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+    @media (min-width: 1440px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+  }
   img {
     width: 327px;
-    height: auto;
     border-radius: 8px;
+    @media (min-width: 740px) {
+      width: 389px;
+    }
+    @media (min-width: 1440px) {
+      width: 589px;
+    }
+  }
+  .lomi {
+    @media (min-width: 1440px) {
+      height: 700px;
+      background-size: cover;
+    }
+  }
+  @media (min-width: 1440px) {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .mobile {
+    display: none;
+  }
+  .tablet {
+    display: none;
+  }
+  .dektop {
+    display: none;
+  }
+
+  @media (min-width: 740px) {
+    .mobile {
+      display: none;
+    }
+    .tablet {
+      display: none;
+    }
+  }
+  @media (min-width: 1440px) {
+    .mobile {
+      display: none;
+    }
+    .tablet {
+      display: none;
+    }
+    .dektop {
+      display: block;
+      width: 300px;
+    }
   }
 `;
 
@@ -239,6 +411,18 @@ const OtherProducts = styled.div`
   flex-direction: column;
   gap: 50px;
   margin-top: 20px;
+  text-align: center;
+  @media (min-width: 1440px) {
+    text-align: center;
+    justify-content: center;
+  }
+  .productssa {
+    @media (min-width: 1440px) {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+    }
+  }
 `;
 
 const OtherProduct = styled.div`

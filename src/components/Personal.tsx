@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import Person from "/assets/shared/mobile/image-best-gear.jpg";
 
 function Personal() {
   return (
     <Maindiv>
-      <img src={Person} alt="Person" />
+      <div className="img"></div>
       <Infromation>
         <h1>
           Bringing you the <span>best</span> audio gear
@@ -32,19 +31,36 @@ const Maindiv = styled.div`
   padding: 20px;
   margin-top: 100px;
 
-  img {
-    width: 327px;
-    height: 300px;
+  .img {
+    background-image: url("/public/assets/shared/mobile/image-best-gear.jpg");
+
+    background-repeat: no-repeat;
+    background-size: cover;
+
     border-radius: 8px;
     order: 1;
   }
+  @media (min-width: 740px) {
+    flex-direction: column;
+    text-align: unset;
+    gap: 100px;
 
+    .img {
+      background-image: url("/public/assets/shared/tablet/image-best-gear.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 700px;
+      height: 300px;
+      order: 1; /* Swap the order */
+    }
+  }
   @media (min-width: 1440px) {
     flex-direction: row;
     text-align: unset;
     gap: 100px;
 
-    img {
+    .img {
+      background-image: url("/public/assets/shared/desktop/image-best-gear.jpg");
       width: 540px;
       height: 558px;
       order: 2; /* Swap the order */
@@ -80,7 +96,24 @@ const Infromation = styled.div`
     font-weight: 400;
     line-height: 25px; /* 166.667% */
   }
+  @media (min-width: 740px) {
+    width: 573px;
+    height: 295px;
+    text-align: center;
+    order: 1; /* Swap the order */
 
+    h1 {
+      color: #000;
+      text-align: center;
+      font-family: Manrope;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 44px; /* 110% */
+      letter-spacing: 1.429px;
+      text-transform: uppercase; /* 166.667% */
+    }
+  }
   @media (min-width: 1440px) {
     width: 450px;
     height: 295px;
