@@ -41,14 +41,8 @@ const schema = yup.object({
   City: yup.string().required("City is required"),
   Country: yup.string().required("Country is required"),
   paymentMethod: yup.string().required("Payment method is required"),
-  eMoneyNumber: yup.string().when("paymentMethod", {
-    is: "eMoney",
-    then: yup.string().required("e-Money Number is required"),
-  }),
-  eMoneyPIN: yup.string().when("paymentMethod", {
-    is: "eMoney",
-    then: yup.string().required("e-Money PIN is required"),
-  }),
+  eMoneyNumber: yup.string(),
+  eMoneyPIN: yup.string(),
 });
 
 // Define the props interface for Checkout component
@@ -64,10 +58,7 @@ interface CheckoutProps {
 }
 
 // Define Checkout component
-const Checkout: React.FC<CheckoutProps> = ({
-  cartProductDetails,
-  totalItems,
-}) => {
+const Checkout: React.FC<CheckoutProps> = ({ cartProductDetails }) => {
   const [successfulPurchase, setSuccessfulPurchase] = useState(false);
 
   // React Hook Form initialization
@@ -108,7 +99,14 @@ const Checkout: React.FC<CheckoutProps> = ({
 
   return (
     <MAINDIVS>
-      {successfulPurchase && <Finish cartProductDetails={cartProductDetails} />}
+      {successfulPurchase && (
+        <Finish
+          cartProductDetails={cartProductDetails}
+          onClose={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
+      )}
       <FormStyled onSubmit={handleSubmit(onSubmit)}>
         <div className="isa">
           <p onClick={() => navigate(-1)}>GO BACK</p>

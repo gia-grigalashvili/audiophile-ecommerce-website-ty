@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import GROUP from "/public/assets/Group 12.png";
@@ -15,8 +15,6 @@ interface FinishProps {
 }
 
 const Finish: React.FC<FinishProps> = ({ cartProductDetails }) => {
-  const navigate = useNavigate();
-
   // Calculate total price
   const totalPrice = cartProductDetails.reduce(
     (total, product) => total + product.price * product.quantity,

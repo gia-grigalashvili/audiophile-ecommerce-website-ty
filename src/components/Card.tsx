@@ -5,9 +5,29 @@ import styled from "styled-components";
 import Minus from "/public/assets/-.png";
 import Plus from "/public/assets/+.png";
 
+// Define interfaces for product data
+interface Product {
+  id: number;
+  name: string;
+  image: {
+    mobile: string;
+    tablet: string;
+    desktop: string;
+  };
+  description: string;
+  price: number;
+  features: string;
+  includes: { quantity: number; item: string }[];
+  gallery: {
+    first: { mobile: string; tablet: string; desktop: string };
+    second: { mobile: string; tablet: string; desktop: string };
+    third: { mobile: string; tablet: string; desktop: string };
+  };
+  others: { id: number; name: string; image: { mobile: string } }[];
+}
+
 interface CardProps {
   productCounters: { [key: number]: number };
-
   handleIncrement: (productId: number) => void;
   handleDecrement: (productId: number) => void;
   handleAddToCart: (
@@ -20,14 +40,19 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({
   productCounters,
-
   handleIncrement,
   handleDecrement,
   handleAddToCart,
 }) => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const product = data.find((item) => item.id === parseInt(id, 10));
+
+  // Ensure `id` is defined before using it
+  const productId = id ? parseInt(id, 10) : null;
+  const product: Product | null = productId
+    ? (data as unknown as Product[]).find((item) => item.id === productId) ||
+      null
+    : null;
 
   const handleViewProduct = (productId: number) => {
     navigate(`/product/${productId}`);
@@ -67,7 +92,6 @@ const Card: React.FC<CardProps> = ({
                       onClick={() => handleIncrement(product.id)}
                     />
                   </COUNTERS>
-
                   <Button
                     onClick={() =>
                       handleAddToCart(
@@ -124,15 +148,14 @@ const Card: React.FC<CardProps> = ({
                 <img
                   className="tablet"
                   src={product.gallery.second.tablet}
-                  alt="Gallery Image 1"
+                  alt="Gallery Image 2"
                 />
                 <img
                   className="mobile"
                   src={product.gallery.second.mobile}
-                  alt="Gallery Image 1"
+                  alt="Gallery Image 2"
                 />
               </div>
-
               <div>
                 <img
                   className="mobile"
@@ -145,13 +168,12 @@ const Card: React.FC<CardProps> = ({
                   alt="Gallery Image 3"
                 />
                 <img
-                  className="desktop  lomi"
+                  className="desktop lomi"
                   src={product.gallery.third.desktop}
                   alt="Gallery Image 3"
                 />
               </div>
             </Gallery>
-
             <OtherProducts>
               <h1>You may also like</h1>
               <div className="productssa">
@@ -162,7 +184,6 @@ const Card: React.FC<CardProps> = ({
                       src={other.image.mobile}
                       alt={other.name}
                     />
-
                     <h4>{other.name}</h4>
                     <Button onClick={() => handleViewProduct(other.id)}>
                       See Product

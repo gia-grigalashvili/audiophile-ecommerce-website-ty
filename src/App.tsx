@@ -39,33 +39,6 @@ function HomePage() {
   );
 }
 
-function HomePagsae({
-  cartProductDetails,
-  handleResetCart,
-}: {
-  cartProductDetails: {
-    productId: number;
-    name: string;
-    price: number;
-    image: string;
-    quantity: number;
-  }[];
-  handleResetCart: () => void;
-}) {
-  return (
-    <>
-      <Checkout
-        cartProductDetails={cartProductDetails}
-        totalItems={cartProductDetails.length}
-      />
-      <Finish
-        cartProductDetails={cartProductDetails}
-        onClose={handleResetCart}
-      />
-    </>
-  );
-}
-
 function HomePagess() {
   return (
     <>
@@ -79,7 +52,6 @@ function HomePagess() {
 
 const HomePagesss: React.FC<HomePagesssProps> = ({
   productCounters,
-  cart,
   handleIncrement,
   handleDecrement,
   handleAddToCart,
@@ -88,7 +60,6 @@ const HomePagesss: React.FC<HomePagesssProps> = ({
     <>
       <Card
         productCounters={productCounters}
-        cart={cart}
         handleIncrement={handleIncrement}
         handleDecrement={handleDecrement}
         handleAddToCart={handleAddToCart}
@@ -209,7 +180,8 @@ function App() {
         handleIncrement={handleIncrement}
         click={click}
         cartProductDetails={cartProductDetails}
-        handleResetCart={handleResetCart} // Pass handleResetCart to Header
+        handleResetCart={handleResetCart}
+        successfulPurchase={false}
       />
       <Routes>
         <Route path="/" element={<HomePage />} />
