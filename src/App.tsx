@@ -5,6 +5,7 @@ import SeeProduct from "./components/SeeProduct";
 import Tech from "./components/Tech";
 import Speaker from "./components/Speaker";
 // import HeadPhones from "./components/HeadPhones";
+import HeadPhones from "./components/Hphones";
 import Personal from "./components/Personal";
 import Footer from "./components/Footer";
 import Card from "./components/Card";
@@ -32,7 +33,7 @@ function HomePage() {
       <SeeProduct />
       <Tech />
       <Speaker />
-      {/* <HeadPhones /> */}
+      <HeadPhones />
       <Personal />
       <Footer />
     </>
