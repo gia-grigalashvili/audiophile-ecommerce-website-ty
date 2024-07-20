@@ -51,8 +51,9 @@ const Maindiv = styled.div`
     letter-spacing: 1.071px;
     text-transform: uppercase;
   }
-  p {
+  a {
     color: #000;
+    text-decoration: none;
     font-family: Manrope;
     font-size: 13px;
     font-style: normal;
