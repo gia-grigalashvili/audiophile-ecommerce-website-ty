@@ -45,7 +45,6 @@ const schema = yup.object({
   eMoneyPIN: yup.string(),
 });
 
-// Define the props interface for Checkout component
 interface CheckoutProps {
   cartProductDetails: {
     productId: number;
@@ -57,11 +56,9 @@ interface CheckoutProps {
   totalItems: number;
 }
 
-// Define Checkout component
 const Checkout: React.FC<CheckoutProps> = ({ cartProductDetails }) => {
   const [successfulPurchase, setSuccessfulPurchase] = useState(false);
 
-  // React Hook Form initialization
   const {
     register,
     handleSubmit,
@@ -71,9 +68,8 @@ const Checkout: React.FC<CheckoutProps> = ({ cartProductDetails }) => {
     resolver: yupResolver(schema),
   });
 
-  // Handle form submission
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data); // You can handle form data submission here (e.g., send to backend)
+    console.log(data);
 
     // Assuming successful submission here, update state
     setSuccessfulPurchase(true); // Update successful purchase state
