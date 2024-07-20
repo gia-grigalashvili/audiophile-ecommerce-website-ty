@@ -111,10 +111,16 @@ const OrderSummary = styled.div`
   margin-top: 2rem;
   text-align: left;
   display: flex;
-  width: 444px;
+  width: 280px;
+  border-radius: 2px;
   align-items: center;
   background: #f1f1f1;
   justify-content: center;
+  flex-direction: column;
+  @media (min-width: 740px) {
+    flex-direction: row;
+    width: 444px;
+  }
 `;
 
 const Product = styled.div`
@@ -150,15 +156,19 @@ const Product = styled.div`
 `;
 
 const Total = styled.div`
-  width: 198px;
+  width: 280px;
   height: 140px;
-  border-radius: 0px 8px 8px 0px;
+
   background: #000;
   display: flex;
 
   flex-direction: column;
   justify-content: center;
-
+  @media (min-width: 740px) {
+    width: 198px;
+    height: 140px;
+    border-radius: 0px 8px 8px 0px;
+  }
   div {
     display: flex;
     flex-direction: column;
@@ -192,7 +202,7 @@ const ButtonContainer = styled.div`
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 4px;
-    width: 444px;
+    width: 280px;
     height: 48px;
     flex-shrink: 0;
     color: #fff;
@@ -205,7 +215,10 @@ const ButtonContainer = styled.div`
     letter-spacing: 1px;
     text-transform: uppercase;
     cursor: pointer;
-
+    @media (min-width: 740px) {
+      width: 444px;
+      height: 48px;
+    }
     &:hover {
       background-color: #444;
     }
