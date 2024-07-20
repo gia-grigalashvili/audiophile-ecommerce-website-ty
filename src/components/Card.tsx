@@ -266,12 +266,16 @@ const ContainerDiv = styled.div`
   .is {
     display: flex;
     flex-direction: column;
-    @media (min-width: 1440px) {
+    @media (min-width: 740px) {
       flex-direction: row;
       align-items: center;
       justify-content: space-evenly;
     }
     .mainis {
+      @media (min-width: 740px) {
+        width: 445.5px;
+        height: 390px;
+      }
       @media (min-width: 1440px) {
         width: 445.5px;
         height: 390px;
@@ -282,12 +286,16 @@ const ContainerDiv = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    @media (min-width: 740px) {
+      flex-direction: row;
+      align-items: center;
+    }
     @media (min-width: 1440px) {
       flex-direction: row;
       align-items: center;
     }
     .Featuresinfo {
-      @media (min-width: 1440px) {
+      @media (min-width: 740px) {
         p {
           width: 635px;
           color: #000;
@@ -389,7 +397,7 @@ const Gallery = styled.div`
       background-size: cover;
     }
   }
-  @media (min-width: 1440px) {
+  @media (min-width: 740px) {
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -437,7 +445,7 @@ const OtherProducts = styled.div`
     justify-content: center;
   }
   .productssa {
-    @media (min-width: 1440px) {
+    @media (min-width: 740px) {
       display: flex;
       justify-content: center;
       gap: 50px;
