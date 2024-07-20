@@ -24,10 +24,8 @@ const Finish: React.FC<FinishProps> = ({ cartProductDetails }) => {
   // Calculate total VAT
   const totalVAT = (totalPrice * 20) / 100;
 
-  // Calculate total with shipping
   const totalWithShipping = totalPrice + 50;
 
-  // Calculate grand total
   const grandTotal = totalWithShipping + totalVAT;
 
   return (
