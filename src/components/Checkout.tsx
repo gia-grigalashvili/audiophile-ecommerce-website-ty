@@ -7,7 +7,6 @@ import styled from "styled-components";
 import InputMask from "react-input-mask";
 import Finish from "./Finish";
 
-// Define the form input types
 type Inputs = {
   firstname: string;
   email: string;
@@ -21,7 +20,6 @@ type Inputs = {
   eMoneyPIN?: string;
 };
 
-// Define Yup schema for validation
 const schema = yup.object({
   firstname: yup
     .string()
@@ -71,26 +69,21 @@ const Checkout: React.FC<CheckoutProps> = ({ cartProductDetails }) => {
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data);
 
-    // Assuming successful submission here, update state
-    setSuccessfulPurchase(true); // Update successful purchase state
+    setSuccessfulPurchase(true);
   };
 
   const navigate = useNavigate();
   const paymentMethod = watch("paymentMethod");
 
-  // Calculate total price
   const totalPrice = cartProductDetails.reduce(
     (total, product) => total + product.price * product.quantity,
     0
   );
 
-  // Calculate total VAT
   const totalVAT = (totalPrice * 20) / 100;
 
-  // Calculate total with shipping
   const totalWithShipping = totalPrice + 50;
 
-  // Calculate grand total
   const grandTotal = totalWithShipping + totalVAT;
 
   return (
@@ -132,7 +125,6 @@ const Checkout: React.FC<CheckoutProps> = ({ cartProductDetails }) => {
             />
             {errors.Phonenumber && <p>{errors.Phonenumber.message}</p>}
 
-            {/* Shipping information */}
             <div>
               <p>Shipping info</p>
               <label htmlFor="YourAddress">Address</label>
@@ -187,7 +179,6 @@ const Checkout: React.FC<CheckoutProps> = ({ cartProductDetails }) => {
               </label>
               {errors.paymentMethod && <p>{errors.paymentMethod.message}</p>}
 
-              {/* Conditional fields for e-Money payment */}
               {paymentMethod === "eMoney" && (
                 <>
                   <label htmlFor="eMoneyNumber">e-Money Number</label>
@@ -391,7 +382,7 @@ const Build = styled.div`
         font-size: 15px;
         font-style: normal;
         font-weight: 700;
-        line-height: 25px; /* 166.667% */
+        line-height: 25px;
       }
       h6 {
         color: #727272;
@@ -400,7 +391,7 @@ const Build = styled.div`
         font-size: 15px;
         font-style: normal;
         font-weight: 700;
-        line-height: 25px; /* 166.667% */
+        line-height: 25px;
       }
     }
   }
@@ -424,7 +415,7 @@ const Build = styled.div`
       font-size: 15px;
       font-style: normal;
       font-weight: 400;
-      line-height: 25px; /* 166.667% */
+      line-height: 25px;
     }
   }
   button {

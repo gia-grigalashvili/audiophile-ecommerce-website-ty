@@ -15,13 +15,11 @@ interface FinishProps {
 }
 
 const Finish: React.FC<FinishProps> = ({ cartProductDetails }) => {
-  // Calculate total price
   const totalPrice = cartProductDetails.reduce(
     (total, product) => total + product.price * product.quantity,
     0
   );
 
-  // Calculate total VAT
   const totalVAT = (totalPrice * 20) / 100;
 
   const totalWithShipping = totalPrice + 50;
