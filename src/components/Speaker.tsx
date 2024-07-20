@@ -1,5 +1,5 @@
-import Speakers from "/public/assets/home/mobile/image-speaker-zx9.png";
-import Speakerdesk from "/public/assets/home/desktop/image-speaker-zx9.png";
+import Speakers from "/assets/home/mobile/image-speaker-zx9.png";
+import Speakerdesk from "/assets/home/desktop/image-speaker-zx9.png";
 import styled from "styled-components";
 
 import { useNavigate } from "react-router-dom";
@@ -74,7 +74,7 @@ const Speakerdiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("/public/assets/home/desktop/pattern-circles.svg");
+  background-image: url("/assets/home/desktop/pattern-circles.svg");
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
@@ -174,7 +174,7 @@ const Speakerdiv = styled.div`
 `;
 
 const SECONDDIV = styled.div`
-  background-image: url("../public/assets/home/mobile/image-speaker-zx7.jpg");
+  background-image: url("../assets/home/mobile/image-speaker-zx7.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -214,13 +214,13 @@ const SECONDDIV = styled.div`
     }
   }
   @media (min-width: 740px) {
-    background-image: url("/public/assets/home/tablet/image-speaker-zx7.jpg");
+    background-image: url("/assets/home/tablet/image-speaker-zx7.jpg");
     width: 689px;
 
     padding: 100px;
   }
   @media (min-width: 1440px) {
-    background-image: url("/public/assets/home/desktop/image-speaker-zx7.jpg");
+    background-image: url("/assets/home/desktop/image-speaker-zx7.jpg");
     width: 1110px;
     padding: 100px;
   }

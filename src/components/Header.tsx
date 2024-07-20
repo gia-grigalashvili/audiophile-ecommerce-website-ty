@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import check from "/public/assets/Combined Shape 2.svg";
-import Burger from "/public/assets/Group.svg";
-import Logo from "/public/assets/audiophile 2.svg";
+import check from "/assets/Combined Shape 2.svg";
+import Burger from "/assets/Group.svg";
+import Logo from "/assets/audiophile 2.svg";
 import Tech from "./Tech";
-import Minus from "/public/assets/-.png";
-import Plus from "/public/assets/+.png";
+import Minus from "/assets/-.png";
+import Plus from "/assets/+.png";
 
 interface ProductDetail {
   productId: number;

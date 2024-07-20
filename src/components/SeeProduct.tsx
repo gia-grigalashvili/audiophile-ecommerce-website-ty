@@ -28,7 +28,7 @@ function SeeProduct() {
 }
 
 const MainDiv = styled.div`
-  background-image: url("/public/assets/home/mobile/image-header.jpg");
+  background-image: url("/assets/home/mobile/image-header.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -39,7 +39,7 @@ const MainDiv = styled.div`
   height: 100vh;
   text-align: center;
   @media (min-width: 740px) {
-    background-image: url("/public/assets/home/tablet/image-header.jpg");
+    background-image: url("/assets/home/tablet/image-header.jpg");
     height: 100vh;
     background-size: cover;
 
@@ -57,7 +57,7 @@ const MainDiv = styled.div`
     text-transform: uppercase;
   }
   @media (min-width: 1440px) {
-    background-image: url("/public/assets/home/desktop/image-hero.jpg");
+    background-image: url("/assets/home/desktop/image-hero.jpg");
     height: 100vh;
     background-size: cover;
     text-align: unset;

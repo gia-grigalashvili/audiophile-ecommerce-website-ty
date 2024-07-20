@@ -32,7 +32,7 @@ const Maindiv = styled.div`
   margin-top: 100px;
 
   .img {
-    background-image: url("/public/assets/shared/mobile/image-best-gear.jpg");
+    background-image: url("/assets/shared/mobile/image-best-gear.jpg");
 
     background-repeat: no-repeat;
     background-size: cover;
@@ -46,7 +46,7 @@ const Maindiv = styled.div`
     gap: 100px;
 
     .img {
-      background-image: url("/public/assets/shared/tablet/image-best-gear.jpg");
+      background-image: url("/assets/shared/tablet/image-best-gear.jpg");
       background-repeat: no-repeat;
       background-size: cover;
       width: 700px;
@@ -60,7 +60,7 @@ const Maindiv = styled.div`
     gap: 100px;
     background-position: center;
     .img {
-      background-image: url("/public/assets/shared/desktop/image-best-gear.jpg");
+      background-image: url("/assets/shared/desktop/image-best-gear.jpg");
       width: 540px;
       height: 558px;
       order: 2; /* Swap the order */
