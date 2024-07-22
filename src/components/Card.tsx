@@ -58,7 +58,7 @@ const Card: React.FC<CardProps> = ({
   };
 
   return (
-    <div>
+    <MAINDIV>
       <p onClick={() => navigate(-1)}>GO BACK</p>
       <ContainerDiv>
         {product ? (
@@ -77,19 +77,11 @@ const Card: React.FC<CardProps> = ({
                 <h3>${product.price.toFixed(2)}</h3>
                 <COUNTERSDIV>
                   <COUNTERS>
-                    <img
-                      className="Minus"
-                      src={Minus}
-                      alt="Decrement"
-                      onClick={() => handleDecrement(product.id)}
-                    />
+                    <h6      onClick={() => handleDecrement(product.id)}>-</h6    >
+              
                     <h5>{productCounters[product.id] || 0}</h5>
-                    <img
-                      className="Plus"
-                      src={Plus}
-                      alt="Increment"
-                      onClick={() => handleIncrement(product.id)}
-                    />
+                    <h6      onClick={() => handleIncrement(product.id)}>+</h6    >
+                  
                   </COUNTERS>
                   <Button
                     onClick={() =>
@@ -196,10 +188,14 @@ const Card: React.FC<CardProps> = ({
           <p>Product not found.</p>
         )}
       </ContainerDiv>
-    </div>
+    </MAINDIV>
   );
 };
-
+const MAINDIV=styled.div`
+p{
+  padding:20px;
+}
+`
 const ContainerDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -253,16 +249,16 @@ const ContainerDiv = styled.div`
     letter-spacing: 0.857px;
     text-transform: uppercase;
   }
-  .Minus {
-    width: 16px;
-    height: 20px;
-    cursor: pointer;
-  }
-  .Plus {
-    width: 16px;
-    height: 20px;
-    cursor: pointer;
-  }
+  // .Minus {
+  //   width: 16px;
+  //   height: 20px;
+  //   cursor: pointer;
+  // }
+  // .Plus {
+  //   width: 16px;
+  //   height: 20px;
+  //   cursor: pointer;
+  // }
   .is {
     display: flex;
     flex-direction: column;
@@ -313,6 +309,17 @@ const ContainerDiv = styled.div`
 const COUNTERS = styled.div`
   display: flex;
   gap: 20px;
+  display: flex;
+  background: #c8c8c8;
+    padding: 12px;
+    margin-top: 20px;
+    width: 130px;
+    flex-direction: row;
+    justify-content: center;
+ h6{
+  font-size: large;
+  cursor: pointer;
+ }
 `;
 
 const COUNTERSDIV = styled.div`

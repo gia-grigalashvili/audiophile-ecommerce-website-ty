@@ -111,20 +111,11 @@ const Header: React.FC<HeaderProps> = ({
                       <p>$ {product.price}</p>
                     </div>
                     <div className="counter">
-                      {/* Increment and decrement buttons */}
-                      <img
-                        onClick={() => handleDecrement(product.productId)}
-                        className="Minus"
-                        src={Minus}
-                        alt=""
-                      />
+                     <h6   onClick={() => handleDecrement(product.productId)} >-</h6>
+                   
                       <h5>{productCounters[product.productId] || 0}</h5>
-                      <img
-                        onClick={() => handleIncrement(product.productId)}
-                        className="Plus"
-                        src={Plus}
-                        alt=""
-                      />
+                      <h6    onClick={() => handleIncrement(product.productId)}>+</h6>
+                     
                     </div>
                   </div>
                 ))}
@@ -346,7 +337,17 @@ const CounterDiv = styled.div`
   }
   .counter {
     display: flex;
+    background: #c8c8c8;
+    padding: 8px;
+    margin-top: 20px;
+    width: 130px;
+    flex-direction: row;
+    justify-content: center;
     gap: 20px;
+   h6{
+    font-size: large;
+    cursor: pointer;
+   }
     .Minus {
       width: 16px;
       height: 20px;
