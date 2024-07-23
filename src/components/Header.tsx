@@ -5,8 +5,6 @@ import check from "/assets/Combined Shape 2.svg";
 import Burger from "/assets/Group.svg";
 import Logo from "/assets/audiophile 2.svg";
 import Tech from "./Tech";
-import Minus from "/assets/-.png";
-import Plus from "/assets/+.png";
 
 interface ProductDetail {
   productId: number;
@@ -25,7 +23,7 @@ interface HeaderProps {
   handleIncrement: (productId: number) => void;
   handleDecrement: (productId: number) => void;
   handleResetCart: () => void;
-  successfulPurchase: boolean; // Include successful purchase state
+  successfulPurchase: boolean;
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -111,11 +109,14 @@ const Header: React.FC<HeaderProps> = ({
                       <p>$ {product.price}</p>
                     </div>
                     <div className="counter">
-                     <h6   onClick={() => handleDecrement(product.productId)} >-</h6>
-                   
+                      <h6 onClick={() => handleDecrement(product.productId)}>
+                        -
+                      </h6>
+
                       <h5>{productCounters[product.productId] || 0}</h5>
-                      <h6    onClick={() => handleIncrement(product.productId)}>+</h6>
-                     
+                      <h6 onClick={() => handleIncrement(product.productId)}>
+                        +
+                      </h6>
                     </div>
                   </div>
                 ))}
@@ -140,6 +141,9 @@ const Header: React.FC<HeaderProps> = ({
     </div>
   );
 };
+
+
+
 
 const Navigation = styled.div`
   width: 100%;
@@ -262,6 +266,7 @@ const CounterDiv = styled.div`
     h1 {
       font-size: 18px;
       font-style: normal;
+      
       font-weight: 700;
       line-height: normal;
       letter-spacing: 1.286px;

@@ -52,9 +52,10 @@ interface CheckoutProps {
     quantity: number;
   }[];
   totalItems: number;
+  onSuccessfulPurchase: () => void;
 }
 
-const Checkout: React.FC<CheckoutProps> = ({ cartProductDetails }) => {
+const Checkout: React.FC<CheckoutProps> = ({ cartProductDetails, onSuccessfulPurchase }) => {
   const [successfulPurchase, setSuccessfulPurchase] = useState(false);
 
   const {
@@ -68,8 +69,8 @@ const Checkout: React.FC<CheckoutProps> = ({ cartProductDetails }) => {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data);
-
     setSuccessfulPurchase(true);
+    onSuccessfulPurchase(); // Call this function to reset cart and totalItems
   };
 
   const navigate = useNavigate();
@@ -81,9 +82,7 @@ const Checkout: React.FC<CheckoutProps> = ({ cartProductDetails }) => {
   );
 
   const totalVAT = (totalPrice * 20) / 100;
-
   const totalWithShipping = totalPrice + 50;
-
   const grandTotal = totalWithShipping + totalVAT;
 
   return (
@@ -91,9 +90,7 @@ const Checkout: React.FC<CheckoutProps> = ({ cartProductDetails }) => {
       {successfulPurchase && (
         <Finish
           cartProductDetails={cartProductDetails}
-          onClose={function (): void {
-            throw new Error("Function not implemented.");
-          }}
+          onClose={() => setSuccessfulPurchase(false)}
         />
       )}
       <FormStyled onSubmit={handleSubmit(onSubmit)}>
@@ -102,7 +99,6 @@ const Checkout: React.FC<CheckoutProps> = ({ cartProductDetails }) => {
           <h1>CHECKOUT</h1>
           <p>Billing details</p>
           <div className="ifsas">
-            {/* Input fields for billing details */}
             <label htmlFor="firstname">Name</label>
             <input
               type="text"
@@ -157,7 +153,6 @@ const Checkout: React.FC<CheckoutProps> = ({ cartProductDetails }) => {
               {errors.Country && <p>{errors.Country.message}</p>}
             </div>
 
-            {/* Payment details */}
             <h1>Payment Details</h1>
             <p>Payment Method</p>
             <div className="asa">
@@ -237,6 +232,9 @@ const Checkout: React.FC<CheckoutProps> = ({ cartProductDetails }) => {
     </MAINDIVS>
   );
 };
+
+
+
 const MAINDIVS = styled.div`
   @media (min-width: 1440px) {
     padding: 160px;

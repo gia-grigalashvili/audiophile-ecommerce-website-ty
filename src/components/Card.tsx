@@ -56,6 +56,7 @@ const Card: React.FC<CardProps> = ({
   const handleViewProduct = (productId: number) => {
     navigate(`/product/${productId}`);
   };
+  
 
   return (
     <MAINDIV>
