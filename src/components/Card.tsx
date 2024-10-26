@@ -2,8 +2,6 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import data from "../data.json";
 import styled from "styled-components";
-import Minus from "/public/assets/-.png";
-import Plus from "/public/assets/+.png";
 
 // Define interfaces for product data
 interface Product {

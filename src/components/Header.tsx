@@ -5,8 +5,6 @@ import check from "/assets/Combined Shape 2.svg";
 import Burger from "/assets/Group.svg";
 import Logo from "/assets/audiophile 2.svg";
 import Tech from "./Tech";
-import Minus from "/assets/-.png";
-import Plus from "/assets/+.png";
 
 interface ProductDetail {
   productId: number;
