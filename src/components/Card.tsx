@@ -77,19 +77,24 @@ const Card: React.FC<CardProps> = ({
                 <h3>${product.price.toFixed(2)}</h3>
                 <COUNTERSDIV>
                   <COUNTERS>
-                    <img
+                    <h1
                       className="Minus"
-                      src={Minus}
-                      alt="Decrement"
                       onClick={() => handleDecrement(product.id)}
-                    />
-                    <h5>{productCounters[product.id] || 0}</h5>
-                    <img
+                    >
+                      {" "}
+                      -
+                    </h1>
+                    <h1 className="numbers">
+                      {productCounters[product.id] || 0}
+                    </h1>
+
+                    <h1
                       className="Plus"
-                      src={Plus}
-                      alt="Increment"
                       onClick={() => handleIncrement(product.id)}
-                    />
+                    >
+                      {" "}
+                      +
+                    </h1>
                   </COUNTERS>
                   <Button
                     onClick={() =>
@@ -254,14 +259,13 @@ const ContainerDiv = styled.div`
     text-transform: uppercase;
   }
   .Minus {
-    width: 16px;
-    height: 20px;
     cursor: pointer;
   }
   .Plus {
-    width: 16px;
-    height: 20px;
     cursor: pointer;
+  }
+  .numbers {
+    font-size: 14px;
   }
   .is {
     display: flex;
@@ -313,6 +317,9 @@ const ContainerDiv = styled.div`
 const COUNTERS = styled.div`
   display: flex;
   gap: 20px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 `;
 
 const COUNTERSDIV = styled.div`

@@ -112,19 +112,25 @@ const Header: React.FC<HeaderProps> = ({
                     </div>
                     <div className="counter">
                       {/* Increment and decrement buttons */}
-                      <img
+
+                      <h1
                         onClick={() => handleDecrement(product.productId)}
                         className="Minus"
-                        src={Minus}
-                        alt=""
-                      />
-                      <h5>{productCounters[product.productId] || 0}</h5>
-                      <img
+                      >
+                        {" "}
+                        -
+                      </h1>
+                      <h1 className="numbers">
+                        {productCounters[product.productId] || 0}
+                      </h1>
+
+                      <h1
                         onClick={() => handleIncrement(product.productId)}
                         className="Plus"
-                        src={Plus}
-                        alt=""
-                      />
+                      >
+                        {" "}
+                        +
+                      </h1>
                     </div>
                   </div>
                 ))}
@@ -347,15 +353,17 @@ const CounterDiv = styled.div`
   .counter {
     display: flex;
     gap: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     .Minus {
-      width: 16px;
-      height: 20px;
       cursor: pointer;
     }
     .Plus {
-      width: 16px;
-      height: 20px;
       cursor: pointer;
+    }
+    .numbers {
+      font-size: 14px;
     }
   }
 `;
